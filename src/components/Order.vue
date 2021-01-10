@@ -75,14 +75,14 @@ export default {
         },
         xAxis: {
             type: 'value',
-            inverse: true,
-            realtimeSort: true
+            inverse: true    
         },
         yAxis: {
             type: 'category',
-            data: ['广东', '山西', '北京', '广西', '湖南', '四川', '上海', '内蒙古', '河南', '宁夏', '吉林', '浙江', '辽宁', '甘肃', '陕西', '天津', '山东', '湖北', '福建', '河北', '安徽', '江苏'],
-            // data: ['广东', '山西', '北京'],
-            position: 'right'
+            data: ['广东', '山西', '北京', '广西', '湖南', '四川', '上海', '内蒙古', '河南', '宁夏', '吉林', '浙江', '辽宁', '甘肃', '陕西', '天津', '山东', '湖北', '福建', '河北', '安徽', '江苏', '重庆'],
+            position: 'right',
+            max : 7,
+            realtimeSort: true
         },
         series: [
             {
@@ -97,7 +97,7 @@ export default {
             emphasis: {
                 focus: 'series'
             },
-            data: [100, 120, 150]
+            data: [100, 120, 150, 100, 130, 120, 200, 180]
             },
             {
             name: '治愈出院',
@@ -111,7 +111,7 @@ export default {
             emphasis: {
                 focus: 'series'
             },
-            data: [200, 100, 140]
+            data: [200, 100, 140, 100, 130, 120, 200, 180]
             },
             {
             name: '死亡',
@@ -125,7 +125,7 @@ export default {
             emphasis: {
                 focus: 'series'
             },
-            data: [300, 150, 280]
+            data: [300, 150, 280, 200, 130, 320, 200, 180]
             }
         ]
         }
@@ -152,7 +152,8 @@ export default {
             type: 'category',
             // data: ['广东', '山西', '北京', '广西', '湖南', '四川', '上海'，'内蒙古','河南','宁夏','吉林','浙江','辽宁','甘肃','陕西','天津','山东','湖北','福建','河北','安徽','江苏'],
             data: ['广东', '山西', '北京'],
-            realtimeSort: true
+            realtimeSort: true,
+            max : 4
         },
         series: [
             {
