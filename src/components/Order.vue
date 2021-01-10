@@ -2,15 +2,16 @@
   <div class="ChinaMap">
     <h1>{{ msg }}</h1>
     <!-- <h2>作者：{{ author }}</h2>  -->
-    <div style="margin: 0 auto; display: flex; flex-direction: row; justify-content: space-around;">
-    <div id="main-left" style="width: 600px; height: 600px;"></div>
-    <div id="main-right" style="width: 600px; height: 600px;"></div>
+    <div style="margin:0 50 0 50; display: flex; flex-direction: row; justify-content: space-around;">
+        <div id="main-left" style="width: 600px; height: 600px;"></div>
+        <div id="center-link" style="width:200px; height:600px;"></div>
+        <div id="main-right" style="width: 600px; height: 600px;"></div>
     </div>
   </div>
 </template>
 
 <script>
-
+import * as d3 from 'd3'
 export default {
   name: 'order',
   data () {
@@ -94,9 +95,10 @@ export default {
       ],
       data1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       data2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      data3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      data3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  
     }
   },
+
   mounted () {
       let _this = this
       _this.init()
@@ -108,6 +110,9 @@ export default {
   methods: {
       init () {
           this.j = 0
+          this.num = 20
+          this.leftname = ['a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a']
+          this.rightname = ['a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a']
       },
       draw () {
         this.optionLeft = {
@@ -138,13 +143,10 @@ export default {
             type: 'category',
             data: ['广东', '山西', '北京', '广西', '湖南', '四川', '上海', '内蒙古', '河南', '宁夏', '吉林', '浙江', '辽宁', '甘肃', '陕西', '天津', '山东', '湖北', '福建', '河北', '安徽', '江苏', '重庆'],
             position: 'right',
-            offset: 20,
-            // nameTextStyle: {
-            //     align: 'right',
-            // },
+            offset: 15,
             animationDuration: 300,
             animationDurationUpdate: 300,
-            max: 6,
+            max: 19,
             inverse: true
         },
         animationDuration: 0,
@@ -155,6 +157,7 @@ export default {
                 {
                     name: '确诊人数',
                     type: 'bar',
+                    stack: 'total',
                     emphasis: {
                         focus: 'series'
                     },
@@ -168,6 +171,7 @@ export default {
                 {
                     name: '治愈人数',
                     type: 'bar',
+                    stack: 'total',
                     emphasis: {
                         focus: 'series'
                     },
@@ -181,6 +185,7 @@ export default {
                 {
                     name: '死亡人数',
                     type: 'bar',
+                    stack: 'total',
                     emphasis: {
                         focus: 'series'
                     },
@@ -195,7 +200,7 @@ export default {
         }
         this.optionRight = {
             title: {
-                text: '非典数据',
+                text: '新冠数据',
                 subtext: '数据来自卫健委'
             },
             tooltip: {
@@ -214,20 +219,26 @@ export default {
                 containLabel: true
             },
             xAxis: {
-                type: 'value',
-                boundaryGap: [0, 0.01]
+                type: 'value'
             },
             yAxis: {
                 type: 'category',
-                max: 4,
+                max: 19,
                 inverse: true,
-                realtimeSort: true,
+                offset: 15,
+                animationDuration: 300,
+                animationDurationUpdate: 300,
                 data: ['广东', '山西', '北京', '广西', '湖南', '四川', '上海', '内蒙古', '河南', '宁夏', '吉林', '浙江', '辽宁', '甘肃', '陕西', '天津', '山东', '湖北', '福建', '河北', '安徽', '江苏', '重庆']
             },
+            animationDuration: 0,
+            animationDurationUpdate: 3000,
+            animationEasing: 'linear',
+            animationEasingUpdate: 'linear',
             series: [
                 {
                     name: '确诊人数',
                     type: 'bar',
+                    stack: 'total',
                     emphasis: {
                         focus: 'series'
                     },
@@ -241,6 +252,7 @@ export default {
                 {
                     name: '治愈人数',
                     type: 'bar',
+                    stack: 'total',
                     emphasis: {
                         focus: 'series'
                     },
@@ -254,6 +266,7 @@ export default {
                 {
                     name: '死亡人数',
                     type: 'bar',
+                    stack: 'total',
                     emphasis: {
                         focus: 'series'
                     },
@@ -266,67 +279,221 @@ export default {
                 }
             ]
         }
+        this.pos = 100
         this.chartLeft = this.$echarts.init(document.getElementById('main-left'))
-        // this.chartRight = this.$echarts.init(document.getElementById('main-right'))
+        this.chartRight = this.$echarts.init(document.getElementById('main-right'))
+        this.svg = d3.select('#center-link').append('svg')
+            .attr('width', 200)
+            .attr('height', 600)
+        this.gLink = this.svg.append('g')
+              .attr('fill', 'none')
+              .attr('stroke', '#999')
+              .attr('stroke-opacity', 0.4)
+              .attr('stroke-width', 3)
+        this.gleftnode = this.svg.append('g')
+            .attr('cursor', 'pointer')
+            .attr('pointer-events', 'all')
+        this.grightnode = this.svg.append('g')
+            .attr('cursor', 'pointer')
+            .attr('pointer-events', 'all')
+        // 绘制节点
+        const dataset = [ 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 76, 77, 78 ,79, 80]
+        var leftenter = this.gleftnode.selectAll('g')
+                .data(dataset)        
+                .enter()
+        leftenter.append('circle')
+                .attr('cx', 20)
+                .attr('cy', function (d, i) {
+                    return (i * 25) + 70
+                })
+                .attr('r', 5)
+                .attr('fill', '#999')
+        var rightenter = this.grightnode.selectAll('g')
+                .data(dataset)        
+                .enter()
+        rightenter.append('circle')
+                .attr('cx', 180)
+                .attr('cy', function (d, i) {
+                    return (i * 25) + 70
+                })
+                .attr('r', 5)
+                .attr('fill', '#999')
+        // 绘制连线
+        function handle (data) {
+            let result = {
+                source: [],
+                target: []
+            }
+            result.source[0] = data.source.x
+                result.source[1] = data.source.y
+                result.target[0] = data.target.x
+                result.target[1] = data.target.y
+                return result
+        }
+        this.linkdata = [
+            {source: {x: 20, y: 70}, target: {x: 20, y: 75}},
+            {source: {x: 20, y: 95}, target: {x: 20, y: 95}},
+            {source: {x: 20, y: 120}, target: {x: 20, y: 120}},
+            {source: {x: 20, y: 145}, target: {x: 20, y: 145}},
+            {source: {x: 20, y: 170}, target: {x: 20, y: 170}},
+            {source: {x: 20, y: 195}, target: {x: 20, y: 195}},
+            {source: {x: 20, y: 220}, target: {x: 20, y: 220}},
+            {source: {x: 20, y: 245}, target: {x: 20, y: 245}},
+            {source: {x: 20, y: 270}, target: {x: 20, y: 270}},
+            {source: {x: 20, y: 295}, target: {x: 20, y: 295}},
+            {source: {x: 20, y: 320}, target: {x: 20, y: 320}},
+            {source: {x: 20, y: 345}, target: {x: 20, y: 345}},
+            {source: {x: 20, y: 370}, target: {x: 20, y: 370}},
+            {source: {x: 20, y: 395}, target: {x: 20, y: 395}},
+            {source: {x: 20, y: 420}, target: {x: 20, y: 420}},
+            {source: {x: 20, y: 425}, target: {x: 20, y: 425}},
+            {source: {x: 20, y: 450}, target: {x: 20, y: 450}},
+            {source: {x: 20, y: 475}, target: {x: 20, y: 475}},
+            {source: {x: 20, y: 500}, target: {x: 20, y: 500}},
+            {source: {x: 20, y: 525}, target: {x: 20, y: 525}}
+        ]
+        let link = d3.linkHorizontal()
+        this.svg.selectAll('.gLink').data(this.linkdata).join(enter => {
+            enter.append('path')
+                .attr('d', d => link(handle(d)))
+                .attr('fill', 'none')
+                .attr('stroke', '#999')
+                .attr('stroke-opacity', 0.4)
+                .attr('stroke-width', 6)
+        })
+
         this.chartLeft.setOption(this.optionLeft)
+        this.chartRight.setOption(this.optionRight)
     },
 
       run () {
+        // 非典
         var dataconfirmLeft = this.optionLeft.series[0].data // 所有省当天的确诊人数
         var datarecoveryLeft = this.optionLeft.series[1].data // 所有省当天的康复人数
         var datadeadLeft = this.optionLeft.series[2].data // 所有省当天的死亡人数
+        // 新冠
+        var dataconfirmRight = this.optionRight.series[0].data // 所有省当天的确诊人数
+        var datarecoveryRight = this.optionRight.series[1].data // 所有省当天的康复人数
+        var datadeadRight = this.optionRight.series[2].data // 所有省当天的死亡人数
 
         for (var i = 0; i < dataconfirmLeft.length; ++i) {
             let pc = this.comfirmData[i].value // 该省所有天数的确诊数据
             let pr = this.recoveryData[i].value
             let pd = this.deadData[i].value
-            // dataconfirmRight[i] = pc[this.j]
-            // datarecoveryRight[i] = pr[this.j]
-            // datadeadRight[i] = pd[this.j]
+            dataconfirmRight[i] = pc[this.j] - pr[this.j] - pd[this.j]
+            datarecoveryRight[i] = pr[this.j]
+            datadeadRight[i] = pd[this.j]
 
-            dataconfirmLeft[i] = pc[this.j]
+            dataconfirmLeft[i] = pc[this.j] - pr[this.j] - pd[this.j]
             datarecoveryLeft[i] = pr[this.j]
             datadeadLeft[i] = pd[this.j]
         }
 
-        // 按dataconfirmLeft排序
+        // 按dataconfirmLeft排序(左)
         for (let i = 0; i < dataconfirmLeft.length; i++) {
-            for (let j = i + 1; j < dataconfirmLeft.length; j++) {
-                if (dataconfirmLeft[i] < dataconfirmLeft[j]) {
+            for (let k = i + 1; k < dataconfirmLeft.length; k++) {
+                if (dataconfirmLeft[i] + datarecoveryLeft[i] + datadeadLeft[i] < dataconfirmLeft[k] + datarecoveryLeft[k] + datadeadLeft[k] ) {
                     var tmp = dataconfirmLeft[i]
-                    dataconfirmLeft[i] = dataconfirmLeft[j]
-                    dataconfirmLeft[j] = tmp
+                    dataconfirmLeft[i] = dataconfirmLeft[k]
+                    dataconfirmLeft[k] = tmp
                     tmp = datarecoveryLeft[i]
-                    datarecoveryLeft[i] = datarecoveryLeft[j]
-                    datarecoveryLeft[j] = tmp
+                    datarecoveryLeft[i] = datarecoveryLeft[k]
+                    datarecoveryLeft[k] = tmp
                     tmp = datadeadLeft[i]
-                    datadeadLeft[i] = datadeadLeft[j]
-                    datadeadLeft[j] = tmp
+                    datadeadLeft[i] = datadeadLeft[k]
+                    datadeadLeft[k] = tmp
                     tmp = this.optionLeft.yAxis.data[i]
-                    this.optionLeft.yAxis.data[i] = this.optionLeft.yAxis.data[j]
-                    this.optionLeft.yAxis.data[j] = tmp
+                    this.optionLeft.yAxis.data[i] = this.optionLeft.yAxis.data[k]
+                    this.optionLeft.yAxis.data[k] = tmp
 
                     tmp = this.comfirmData[i]
-                    this.comfirmData[i] = this.comfirmData[j]
-                    this.comfirmData[j] = tmp
+                    this.comfirmData[i] = this.comfirmData[k]
+                    this.comfirmData[k] = tmp
 
                     tmp = this.recoveryData[i]
-                    this.recoveryData[i] = this.recoveryData[j]
-                    this.recoveryData[j] = tmp
+                    this.recoveryData[i] = this.recoveryData[k]
+                    this.recoveryData[k] = tmp
 
                     tmp = this.deadData[i]
-                    this.deadData[i] = this.deadData[j]
-                    this.deadData[j] = tmp
+                    this.deadData[i] = this.deadData[k]
+                    this.deadData[k] = tmp
                 }
             }
         }
 
-        // var dataconfirmRight = this.optionRight.series[0].data
-        // var datarecoveryRight = this.optionRight.series[1].data // 所有省当天的康复人数
-        // var datadeadRight = this.optionRight.series[2].data // 所有省当天的死亡人数
+        // 按dataconfirmLeft排序(右)
+        // for (let i = 0; i < dataconfirmRight.length; i++) {
+        //     for (let k = i + 1; k < dataconfirmRight.length; k++) {
+        //         if (dataconfirmRight[i] < dataconfirmRight[k]) {
+        //             tmp = dataconfirmRight[i]
+        //             dataconfirmRight[i] = dataconfirmRight[k]
+        //             dataconfirmRight[k] = tmp
+        //             tmp = datarecoveryRight[i]
+        //             datarecoveryRight[i] = datarecoveryRight[k]
+        //             datarecoveryRight[k] = tmp
+        //             tmp = datadeadRight[i]
+        //             datadeadRight[i] = datadeadRight[k]
+        //             datadeadRight[k] = tmp
+        //             tmp = this.optionRight.yAxis.data[i]
+        //             this.optionRight.yAxis.data[i] = this.optionRight.yAxis.data[k]
+        //             this.optionRight.yAxis.data[k] = tmp
 
+        //             tmp = this.comfirmData[i]
+        //             this.comfirmData[i] = this.comfirmData[k]
+        //             this.comfirmData[k] = tmp
+
+        //             tmp = this.recoveryData[i]
+        //             this.recoveryData[i] = this.recoveryData[k]
+        //             this.recoveryData[k] = tmp
+
+        //             tmp = this.deadData[i]
+        //             this.deadData[i] = this.deadData[k]
+        //             this.deadData[k] = tmp
+        //         }
+        //     }
+        // }
+        // 更新连线数据
+        for (let i = 0; i < 20; i++) {
+            this.leftname[i] = this.optionLeft.yAxis.data[i]
+            this.rightname[i] = this.optionRight.yAxis.data[i]
+        }
+        
+        for (let i = 0; i < 20; i++) {
+            var flag = 0
+            for (let k = 0; k < 20; k++) {
+                if (this.leftname[i] === this.rightname[k]) {
+                    this.linkdata[i] = {source: {x: 20, y: 70 + 25 * i}, target: {x: 180, y: 70 + 25 * k}}
+                    flag = 1
+                    break
+                }
+            }
+            if (flag === 0){
+                this.linkdata[i] = {source: {x: 20, y: 70 + 25 * i}, target: {x: 20, y: 70 + 25 * i}}
+            }
+        }
+        this.svg.selectAll('path').remove()
+        function handle (data) {
+            let result = {
+                source: [],
+                target: []
+            }
+            result.source[0] = data.source.x
+                result.source[1] = data.source.y
+                result.target[0] = data.target.x
+                result.target[1] = data.target.y
+                return result
+        }
+        let link = d3.linkHorizontal()
+        this.svg.selectAll('.gLink').data(this.linkdata).join(enter => {
+            enter.append('path')
+                .attr('d', d => link(handle(d)))
+                .attr('fill', 'none')
+                .attr('stroke', '#999')
+                .attr('stroke-opacity', 0.4)
+                .attr('stroke-width', 6)
+        })
         this.chartLeft.setOption(this.optionLeft)
-        // this.chartRight.setOption(this.optionRight)
+        this.chartRight.setOption(this.optionRight)
         this.j = this.j + 1
         if (this.j === 24) {
             this.j = 0
