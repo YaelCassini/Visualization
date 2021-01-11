@@ -15,20 +15,6 @@ import * as d3 from 'd3'
 
 import echarts from 'echarts/lib/echarts';
 import 'echarts/map/js/china.js';
-// 散点图
-import 'echarts/lib/chart/scatter';
-import 'echarts/lib/chart/effectScatter';
-// 地图
-import 'echarts/lib/chart/map';
-// 图例
-import 'echarts/lib/component/legend';
-// 提示框
-import 'echarts/lib/component/tooltip';
-// 地图geo
-import 'echarts/lib/component/geo';
-
-
-// import location from './location3.json'
 // import echarts from 'echarts'
 // Vue.prototype.$echarts = echarts
 // import 'echarts/map/js/china' // 引入中国地图
@@ -45,8 +31,8 @@ export default {
       data() {
         return {
             mydata: [],
-            msg: '这个界面是中国地图，显示各省每日增长',
-            author: '李沛瑶',
+            msg: '各省每日增长排名',
+            author: '张宇晴',
             comfirmData: [
                 {name: '广东', value: [1213, 1317, 1330, 1344, 1359, 1374, 1379, 1382, 1395, 1399, 1405, 1412, 1421, 1432, 1441, 1453, 1465, 1478, 1485, 1502, 1504, 1506, 1509, 1509, 1510]},
                 {name: '山西', value: [32, 120, 141, 157, 162, 173, 195, 214, 243, 266, 300, 308, 312, 330, 341, 362, 373, 382, 395, 406, 417, 423, 427, 440, 444]},
@@ -131,14 +117,8 @@ export default {
     mounted() {
         let _this = this
         _this.init()
-        // _this.drawMap()
+        _this.drawLine()
         // this.drawLine()
-        chinaMap.showLoading(showLoadingDefault)
-        this.$store.commit('openLoading')
-        this.$store.dispatch('fetchHeatChinaRealData', chinaMap)
-        setInterval(() => {
-        this.$store.dispatch('fetchHeatChinaRealData', chinaMap)
-        }, 1000)
     
     },
     methods:{
@@ -147,20 +127,18 @@ export default {
         //   this.num = 20
         //   this.leftname = ['a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a']
         //   this.rightname = ['a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a']
-            // console.log(location);
-            // this.geodata = location;
-            this.drawMap();
+            this.drawLine();
         },
 
-        drawMap() {
+        drawLine() {
         this.mydata = [  
                 { name: '北京', value: 100 }, { name: '天津', value: this.randomData() },  
                 { name: '上海', value: this.randomData() }, { name: '重庆', value: this.randomData() },  
                 { name: '河北', value: this.randomData() }, { name: '河南', value: this.randomData() },  
-                { name: '云南', value: this.randomData() }, { name: '辽宁', value: this.randomData() },  
-                {name: '黑龙江',value: this.randomData() },{name: '湖南',value: this.randomData() },  
-                {name: '安徽',value: this.randomData() },{name: '山东',value: this.randomData() },  
-                {name: '新疆',value: this.randomData() },{name: '江苏',value: this.randomData() },  
+                { name: '云南', value: this.randomData() }, { name: '辽宁', value: this.randomData() }  
+                // {name: '黑龙江',value: this.randomData() },{name: '湖南',value: this.randomData() },  
+                // {name: '安徽',value: this.randomData() },{name: '山东',value: this.randomData() },  
+                // {name: '新疆',value: this.randomData() },{name: '江苏',value: this.randomData() },  
                 // {name: '浙江',value: this.randomData() },{name: '江西',value: this.randomData() },  
                 // {name: '湖北',value: this.randomData() },{name: '广西',value: this.randomData() },  
                 // {name: '甘肃',value: this.randomData() },{name: '山西',value: this.randomData() },  
@@ -172,99 +150,47 @@ export default {
                 // {name: '海南',value: this.randomData() },{name: '台湾',value: this.randomData() },  
                 // {name: '香港',value: this.randomData() },{name: '澳门',value: this.randomData() }  
             ];
-        this.geoCoordMap ={
-            '北京': [116.46,39.92],
-            '上海': [121.48,31.22],
-            '天津':[117.2,39.13],
-            '重庆':[106.54,29.59],
-            '河北':[114.48,38.03],
-            '山西':[112.53,37.87],
-            '辽宁':[123.38,41.8],
-            '吉林':[125.35,43.88],
-            '黑龙江':[126.63,45.75],
-            '浙江':[120.19,30.26],
-            '福建':[119.3,26.08],
-            '山东':[106.54,29.59],
-            '河南':[113.65,34.76],
-            '湖北':[114.31,30.52],
-            '湖南':[113,28.21],
-            '广东':[113.23,23.16],
-            '海南':[110.35,20.02],
-            '四川':[104.06,30.67],
-            '贵州':[106.71,26.57],
-            '云南':[102.73,25.04],
-            '江西':[115.89,28.68],
-            '陕西':[108.95,34.27],
-            '青海':[101.74,36.56],
-            '甘肃':[103.73,36.03],
-            '广西':[106.54,29.59],
-            '新疆':[87.68,43.77],
-            '内蒙古':[111.65,40.82],
-            '西藏':[91.11,29.97],
-            '宁夏':[106.27,38.47],
-            '台湾':[121.5,25.14],
-            '香港':[114.1,22.2],
-            '澳门':[113.33,22.13],
-            '安徽':[117.27,31.86],
-            '江苏':[118.78,32.04]
-        }
+        this.geoCoordMap = {
+            '北京':[121.15,31.89],
+            '天津':[109.781327,39.608266],
+            '上海':[120.38,37.35],
+            '重庆':[122.207216,29.985295],
+            '河北':[123.97,47.33],
+            '河南':[120.13,33.38],
+            '云南':[118.87,42.28],
+            '辽宁':[120.33,36.07]
+        };
         // 基于准备好的dom，初始化echarts实例
         let myChart = this.$echarts.init(document.getElementById('main'))
         // 绘制图表
+
+
         const geoCoordMap = this.geoCoordMap;
-        // const geoCoordMap = location;
         var convertData = function (data) {
-            var res = [];
-            for (var i = 0; i < data.length; i++) {
-                var geoCoord = geoCoordMap[data[i].name];
-                if (geoCoord) {
-                    res.push({
-                        name: data[i].name,
-                        value: geoCoord.concat(data[i].value)
-                    });
-                }
+        var res = [];
+        for (var i = 0; i < data.length; i++) {
+            var geoCoord = geoCoordMap[data[i].name];
+            if (geoCoord) {
+                res.push({
+                    name: data[i].name,
+                    value: geoCoord.concat(data[i].value)
+                });
             }
-            console.log(res);
-            return res;
-        };
-
-
-        const state = {
-            geoCoordMap: {'香港特别行政区': [114.08, 22.2], '澳门特别行政区': [113.33, 22.13], '台北': [121.5, 25.03]/*等等*/},
-            // 发光的城市
-            showCityNumber: 5,
-            showCount: 0,
-            // 是否需要loading
-            isLoading: true
         }
+        console.log(res);
+        return res;
+        };
         
         myChart.setOption({
-
             backgroundColor: '#F7F7F7',
             title: {
                 text: '疫情地理信息',
-                subtext: '中国地图',
-                left: 'center',
-                textStyle: {
-                    color: '#fff'
-                }
+                subtext: '中国地图'
                 // sublink: 'http://zh.wikipedia.org/wiki/%E9%A6%99%E6%B8%AF%E8%A1%8C%E6%94%BF%E5%8D%80%E5%8A%83#cite_note-12'
             },
             tooltip: {
                 trigger: 'item',
-                formatter: '{b}<br/>{c} ',
-                formatter: function (params) {
-                    return params.name + ' : ' + params.value[2]
-                }
-            },
-            legend: {
-                orient: 'vertical',
-                left: 'left',
-                top: 'bottom',
-                data: ['地区热度', 'top5'],
-                textStyle: {
-                    color: '#fff'
-                }
+                formatter: '{b}<br/>{c} '
             },
             toolbox: {
                 show: true,
@@ -276,27 +202,6 @@ export default {
                 //     restore: {},
                 //     saveAsImage: {}
                 // }
-            },
-            // 地理坐标系组件
-            geo: {
-                map: 'china',
-                label: {
-                // true会显示城市名
-                    emphasis: {
-                        show: false
-                    }
-                },
-                itemStyle: {
-                // 地图背景色
-                    normal: {
-                        areaColor: '#465471',
-                        borderColor: '#282F3C'
-                    },
-                    // 悬浮时
-                    emphasis: {
-                        areaColor: '#8796B4'
-                    }
-                },
             },
             visualMap: {
                 max: 500,
@@ -331,81 +236,34 @@ export default {
                     data: this.mydata
                 },
                 {
-                    name: '地区热度',
-                    // 表的类型 这里是散点
+                    name: 'pm2.5',
                     type: 'scatter',
-                    // 使用地理坐标系，通过 geoIndex 指定相应的地理坐标系组件
-                    coordinateSystem: 'geo',
-                    data: [],
+                    coordinateSystem: 'bmap',
                     data: convertData(this.mydata),
-                    symbolSize: function (val) {
-                        return val[2] / 10;
-                    },
-                    // 标记的大小
-                    symbolSize: 12,
-                    // 鼠标悬浮的时候在圆点上显示数值
-                    label: {
-                        normal: {
-                            show: false
-                        },
-                        emphasis: {
-                            show: false
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: '#ddb926'
-                        },
-                    // 鼠标悬浮的时候圆点样式变化
-                    emphasis: {
-                        borderColor: '#fff',
-                            borderWidth: 1
-                        }
-                    }
-                },
-                {
-                    name: 'top5',
-                    // 表的类型 这里是散点
-                    type: 'effectScatter',
-                    // 使用地理坐标系，通过 geoIndex 指定相应的地理坐标系组件
-                    coordinateSystem: 'geo',
-                    data: [],
-                    data: convertData(this.mydata.sort(function (a, b) {
-                        return b.value - a.value;
-                    }).slice(0, 6)),
                     symbolSize: function (val) {
                         return val[2] / 10;
                     },
                     encode: {
                         value: 2
                     },
-                    // 标记的大小
-                    symbolSize: 12,
-                    showEffectOn: 'render',
-                    rippleEffect: {
-                    brushType: 'stroke'
-                    },
-                    hoverAnimation: true,
                     label: {
-                        normal: {
-                            show: false
-                        }
+                        formatter: '{b}',
+                        position: 'right',
+                        show: false
                     },
-                    itemStyle: {
-                        normal: {
-                            color: '#f4e925',
-                            shadowBlur: 10,
-                            shadowColor: '#333'
+                    emphasis: {
+                        label: {
+                            show: true
                         }
-                    },
-                    zlevel: 1
-                },
+                    }
+                }
             ]
         })
     },
     randomData() {  
-        return Math.round(Math.random() * 500);  
-    }             
+     return Math.round(Math.random() * 500);  
+    } 
+             
     },
 }
 </script>
