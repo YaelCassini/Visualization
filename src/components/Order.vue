@@ -282,54 +282,54 @@ export default {
         this.pos = 100
         this.chartLeft = this.$echarts.init(document.getElementById('main-left'))
         this.chartRight = this.$echarts.init(document.getElementById('main-right'))
-        this.svg = d3.select('#center-link').append('svg')
-            .attr('width', 200)
-            .attr('height', 600)
-        this.gLink = this.svg.append('g')
-              .attr('fill', 'none')
-              .attr('stroke', '#999')
-              .attr('stroke-opacity', 0.4)
-              .attr('stroke-width', 3)
-        this.gleftnode = this.svg.append('g')
-            .attr('cursor', 'pointer')
-            .attr('pointer-events', 'all')
-        this.grightnode = this.svg.append('g')
-            .attr('cursor', 'pointer')
-            .attr('pointer-events', 'all')
-        // 绘制节点
-        const dataset = [ 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 76, 77, 78 ,79, 80]
-        var leftenter = this.gleftnode.selectAll('g')
-                .data(dataset)        
-                .enter()
-        leftenter.append('circle')
-                .attr('cx', 20)
-                .attr('cy', function (d, i) {
-                    return (i * 25) + 70
-                })
-                .attr('r', 5)
-                .attr('fill', '#999')
-        var rightenter = this.grightnode.selectAll('g')
-                .data(dataset)        
-                .enter()
-        rightenter.append('circle')
-                .attr('cx', 180)
-                .attr('cy', function (d, i) {
-                    return (i * 25) + 70
-                })
-                .attr('r', 5)
-                .attr('fill', '#999')
-        // 绘制连线
-        function handle (data) {
-            let result = {
-                source: [],
-                target: []
-            }
-            result.source[0] = data.source.x
-                result.source[1] = data.source.y
-                result.target[0] = data.target.x
-                result.target[1] = data.target.y
-                return result
-        }
+        // this.svg = d3.select('#center-link').append('svg')
+        //     .attr('width', 200)
+        //     .attr('height', 600)
+        // this.gLink = this.svg.append('g')
+        //       .attr('fill', 'none')
+        //       .attr('stroke', '#999')
+        //       .attr('stroke-opacity', 0.4)
+        //       .attr('stroke-width', 3)
+        // this.gleftnode = this.svg.append('g')
+        //     .attr('cursor', 'pointer')
+        //     .attr('pointer-events', 'all')
+        // this.grightnode = this.svg.append('g')
+        //     .attr('cursor', 'pointer')
+        //     .attr('pointer-events', 'all')
+        // // 绘制节点
+        // const dataset = [ 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 76, 77, 78 ,79, 80]
+        // var leftenter = this.gleftnode.selectAll('g')
+        //         .data(dataset)        
+        //         .enter()
+        // leftenter.append('circle')
+        //         .attr('cx', 20)
+        //         .attr('cy', function (d, i) {
+        //             return (i * 25) + 70
+        //         })
+        //         .attr('r', 5)
+        //         .attr('fill', '#999')
+        // var rightenter = this.grightnode.selectAll('g')
+        //         .data(dataset)        
+        //         .enter()
+        // rightenter.append('circle')
+        //         .attr('cx', 180)
+        //         .attr('cy', function (d, i) {
+        //             return (i * 25) + 70
+        //         })
+        //         .attr('r', 5)
+        //         .attr('fill', '#999')
+        // // 绘制连线
+        // function handle (data) {
+        //     let result = {
+        //         source: [],
+        //         target: []
+        //     }
+        //     result.source[0] = data.source.x
+        //         result.source[1] = data.source.y
+        //         result.target[0] = data.target.x
+        //         result.target[1] = data.target.y
+        //         return result
+        // }
         this.linkdata = [
             {source: {x: 20, y: 70}, target: {x: 20, y: 75}},
             {source: {x: 20, y: 95}, target: {x: 20, y: 95}},
@@ -352,15 +352,15 @@ export default {
             {source: {x: 20, y: 500}, target: {x: 20, y: 500}},
             {source: {x: 20, y: 525}, target: {x: 20, y: 525}}
         ]
-        let link = d3.linkHorizontal()
-        this.svg.selectAll('.gLink').data(this.linkdata).join(enter => {
-            enter.append('path')
-                .attr('d', d => link(handle(d)))
-                .attr('fill', 'none')
-                .attr('stroke', '#999')
-                .attr('stroke-opacity', 0.4)
-                .attr('stroke-width', 6)
-        })
+        // let link = d3.linkHorizontal()
+        // this.svg.selectAll('.gLink').data(this.linkdata).join(enter => {
+        //     enter.append('path')
+        //         .attr('d', d => link(handle(d)))
+        //         .attr('fill', 'none')
+        //         .attr('stroke', '#999')
+        //         .attr('stroke-opacity', 0.4)
+        //         .attr('stroke-width', 6)
+        // })
 
         this.chartLeft.setOption(this.optionLeft)
         this.chartRight.setOption(this.optionRight)
@@ -471,27 +471,27 @@ export default {
                 this.linkdata[i] = {source: {x: 20, y: 70 + 25 * i}, target: {x: 20, y: 70 + 25 * i}}
             }
         }
-        this.svg.selectAll('path').remove()
-        function handle (data) {
-            let result = {
-                source: [],
-                target: []
-            }
-            result.source[0] = data.source.x
-                result.source[1] = data.source.y
-                result.target[0] = data.target.x
-                result.target[1] = data.target.y
-                return result
-        }
-        let link = d3.linkHorizontal()
-        this.svg.selectAll('.gLink').data(this.linkdata).join(enter => {
-            enter.append('path')
-                .attr('d', d => link(handle(d)))
-                .attr('fill', 'none')
-                .attr('stroke', '#999')
-                .attr('stroke-opacity', 0.4)
-                .attr('stroke-width', 6)
-        })
+        // this.svg.selectAll('path').remove()
+        // function handle (data) {
+        //     let result = {
+        //         source: [],
+        //         target: []
+        //     }
+        //     result.source[0] = data.source.x
+        //         result.source[1] = data.source.y
+        //         result.target[0] = data.target.x
+        //         result.target[1] = data.target.y
+        //         return result
+        // }
+        // let link = d3.linkHorizontal()
+        // this.svg.selectAll('.gLink').data(this.linkdata).join(enter => {
+        //     enter.append('path')
+        //         .attr('d', d => link(handle(d)))
+        //         .attr('fill', 'none')
+        //         .attr('stroke', '#999')
+        //         .attr('stroke-opacity', 0.4)
+        //         .attr('stroke-width', 6)
+        // })
         this.chartLeft.setOption(this.optionLeft)
         this.chartRight.setOption(this.optionRight)
         this.j = this.j + 1
