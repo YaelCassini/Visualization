@@ -26,6 +26,9 @@ import 'echarts/lib/component/legend';
 import 'echarts/lib/component/tooltip';
 // 地图geo
 import 'echarts/lib/component/geo';
+
+
+// import location from './location3.json'
 // import echarts from 'echarts'
 // Vue.prototype.$echarts = echarts
 // import 'echarts/map/js/china' // 引入中国地图
@@ -42,8 +45,8 @@ export default {
       data() {
         return {
             mydata: [],
-            msg: '各省每日增长排名',
-            author: '张宇晴',
+            msg: '这个界面是中国地图，显示各省每日增长',
+            author: '李沛瑶',
             geoCoordMap: {
                 '北京': [116.46,39.92],
                 '上海': [121.48,31.22],
@@ -99,7 +102,7 @@ export default {
                 // {name: '海南',value: this.randomData() },{name: '台湾',value: this.randomData() },  
                 // {name: '香港',value: this.randomData() },{name: '澳门',value: this.randomData() }  
             ],
-            confirmData: [
+            comfirmData: [
                 {name: '广东', value: [1213, 1317, 1330, 1344, 1359, 1374, 1379, 1382, 1395, 1399, 1405, 1412, 1421, 1432, 1441, 1453, 1465, 1478, 1485, 1502, 1504, 1506, 1509, 1509, 1510]},
                 {name: '山西', value: [32, 120, 141, 157, 162, 173, 195, 214, 243, 266, 300, 308, 312, 330, 341, 362, 373, 382, 395, 406, 417, 423, 427, 440, 444]},
                 {name: '北京', value: [22, 482, 558, 693, 774, 877, 990, 1116, 1212, 1363, 1464, 1586, 1682, 1796, 1829, 1927, 1997, 2094, 2188, 2236, 2290, 2332, 2380, 2428, 2467]},
@@ -173,160 +176,36 @@ export default {
                 {name: '安徽', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
                 {name: '江苏', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
                 {name: '重庆', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
-            ],
-            // data1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            // data2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            // data3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  
-            originToday: [
-                {name: '广东', value: 0},
-                {name: '山西', value: 0},
-                {name: '北京', value: 0},
-                {name: '广西', value: 0},
-                {name: '湖南', value: 0},
-                {name: '四川', value: 0},
-                {name: '上海', value: 0},
-                {name: '内蒙古', value: 0},
-                {name: '河南', value: 0},
-                {name: '宁夏', value: 0},
-                {name: '吉林', value: 0},
-                {name: '浙江', value: 0},
-                {name: '辽宁', value: 0},
-                {name: '甘肃', value: 0},
-                {name: '陕西', value: 0},
-                {name: '天津', value: 0},
-                {name: '山东', value: 0},
-                {name: '湖北', value: 0},
-                {name: '福建', value: 0},
-                {name: '河北', value: 0},
-                {name: '安徽', value: 0},
-                {name: '江苏', value: 0},
-                {name: '重庆', value: 0}
-            ],
+                ],
+                data1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                data2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                data3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  
+            }
             
-            confirmToday: [
-                {name: '广东', value: 0},
-                {name: '山西', value: 0},
-                {name: '北京', value: 0},
-                {name: '广西', value: 0},
-                {name: '湖南', value: 0},
-                {name: '四川', value: 0},
-                {name: '上海', value: 0},
-                {name: '内蒙古', value: 0},
-                {name: '河南', value: 0},
-                {name: '宁夏', value: 0},
-                {name: '吉林', value: 0},
-                {name: '浙江', value: 0},
-                {name: '辽宁', value: 0},
-                {name: '甘肃', value: 0},
-                {name: '陕西', value: 0},
-                {name: '天津', value: 0},
-                {name: '山东', value: 0},
-                {name: '湖北', value: 0},
-                {name: '福建', value: 0},
-                {name: '河北', value: 0},
-                {name: '安徽', value: 0},
-                {name: '江苏', value: 0},
-                {name: '重庆', value: 0}
-            ],
-            recoveryToday: [
-                {name: '广东', value: 0},
-                {name: '山西', value: 0},
-                {name: '北京', value: 0},
-                {name: '广西', value: 0},
-                {name: '湖南', value: 0},
-                {name: '四川', value: 0},
-                {name: '上海', value: 0},
-                {name: '内蒙古', value: 0},
-                {name: '河南', value: 0},
-                {name: '宁夏', value: 0},
-                {name: '吉林', value: 0},
-                {name: '浙江', value: 0},
-                {name: '辽宁', value: 0},
-                {name: '甘肃', value: 0},
-                {name: '陕西', value: 0},
-                {name: '天津', value: 0},
-                {name: '山东', value: 0},
-                {name: '湖北', value: 0},
-                {name: '福建', value: 0},
-                {name: '河北', value: 0},
-                {name: '安徽', value: 0},
-                {name: '江苏', value: 0},
-                {name: '重庆', value: 0}
-            ],
-            data0: [
-                {name: '广东', value: 0},
-                {name: '山西', value: 0},
-                {name: '北京', value: 0},
-                {name: '广西', value: 0},
-                {name: '湖南', value: 0},
-                {name: '四川', value: 0},
-                {name: '上海', value: 0},
-                {name: '内蒙古', value: 0},
-                {name: '河南', value: 0},
-                {name: '宁夏', value: 0},
-                {name: '吉林', value: 0},
-                {name: '浙江', value: 0},
-                {name: '辽宁', value: 0},
-                {name: '甘肃', value: 0},
-                {name: '陕西', value: 0},
-                {name: '天津', value: 0},
-                {name: '山东', value: 0},
-                {name: '湖北', value: 0},
-                {name: '福建', value: 0},
-                {name: '河北', value: 0},
-                {name: '安徽', value: 0},
-                {name: '江苏', value: 0},
-                {name: '重庆', value: 0}
-            ],
-            
-            }        
     },
     mounted() {
         let _this = this
         _this.init()
-        _this.drawLine()
+        // _this.drawMap()
         // this.drawLine()
-        // chinaMap.showLoading(showLoadingDefault)
-        // this.$store.commit('openLoading')
-        // this.$store.dispatch('fetchHeatChinaRealData', chinaMap)
-        // setInterval(() => {
-        // this.$store.dispatch('fetchHeatChinaRealData', chinaMap)
-        // }, 1000)
+        chinaMap.showLoading(showLoadingDefault)
+        this.$store.commit('openLoading')
+        this.$store.dispatch('fetchHeatChinaRealData', chinaMap)
+        setInterval(() => {
+        this.$store.dispatch('fetchHeatChinaRealData', chinaMap)
+        }, 1000)
     
     },
     methods:{
         init () {
-            let _this = this
-            _this.date = 0;
         //   this.j = 0
         //   this.num = 20
         //   this.leftname = ['a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a']
         //   this.rightname = ['a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a']
-            _this.drawLine();
-            setTimeout(function () { _this.run() }, 0)
-            setInterval(function () { _this.run() }, 1000)
+            this.drawMap();
         },
 
-        drawLine() {
-            this.mydata = [  
-                { name: '北京', value: 100 }, { name: '天津', value: 120},  
-                { name: '上海', value: 110 }, { name: '重庆', value: 90 },  
-                { name: '河北', value: 100 }, { name: '河南', value: 80 },  
-                { name: '云南', value: 70  }, { name: '辽宁', value: 75 }  
-                // {name: '黑龙江',value: this.randomData() },{name: '湖南',value: this.randomData() },  
-                // {name: '安徽',value: this.randomData() },{name: '山东',value: this.randomData() },  
-                // {name: '新疆',value: this.randomData() },{name: '江苏',value: this.randomData() },  
-                // {name: '浙江',value: this.randomData() },{name: '江西',value: this.randomData() },  
-                // {name: '湖北',value: this.randomData() },{name: '广西',value: this.randomData() },  
-                // {name: '甘肃',value: this.randomData() },{name: '山西',value: this.randomData() },  
-                // {name: '内蒙古',value: this.randomData() },{name: '陕西',value: this.randomData() },  
-                // {name: '吉林',value: this.randomData() },{name: '福建',value: this.randomData() },  
-                // {name: '贵州',value: this.randomData() },{name: '广东',value: this.randomData() },  
-                // {name: '青海',value: this.randomData() },{name: '西藏',value: this.randomData() },  
-                // {name: '四川',value: this.randomData() },{name: '宁夏',value: this.randomData() },  
-                // {name: '海南',value: this.randomData() },{name: '台湾',value: this.randomData() },  
-                // {name: '香港',value: this.randomData() },{name: '澳门',value: this.randomData() }  
-            ];
+        drawMap() {
             // 根据data获取不同省份对应的地理信息
             const geoCoordMap = this.geoCoordMap;
             var convertData = function (data) {
@@ -340,33 +219,31 @@ export default {
                         });
                     }
                 }
-                console.log(res);
+                // console.log(res);
                 return res;
             };
 
-            const state = {
-                geoCoordMap: {'香港特别行政区': [114.08, 22.2], '澳门特别行政区': [113.33, 22.13], '台北': [121.5, 25.03]/*等等*/},
-                // 发光的城市
-                showCityNumber: 5,
-                showCount: 0,
-                // 是否需要loading
-                isLoading: true
-            }
+            // const state = {
+            //     geoCoordMap: {'香港特别行政区': [114.08, 22.2], '澳门特别行政区': [113.33, 22.13], '台北': [121.5, 25.03]/*等等*/},
+            //     // 发光的城市
+            //     showCityNumber: 5,
+            //     showCount: 0,
+            //     // 是否需要loading
+            //     isLoading: true
+            // }
         
             this.option = {
                 // 地理坐标系组件
-                // 在这里改变整个地图的颜色和悬浮时字体的颜色
                 geo: {
                     map: 'china',
                     label: {
                     // true会显示城市名
                         emphasis: {
-                            color: '#000000',
-                            show: true
+                            show: false
                         }
                     },
                     itemStyle: {
-                        // 地图背景色
+                    // 地图背景色
                         normal: {
                             areaColor: '#465471',
                             borderColor: '#282F3C'
@@ -414,7 +291,7 @@ export default {
                     // }
                 },
                 visualMap: {
-                    max: 1000,
+                    max: 500,
                     min: 0,
                     text: ['高', '低'],
                     realtime: false,
@@ -427,44 +304,53 @@ export default {
                     }
                 },
                 series: [
-
+                    {
+                        name: '损失统计',
+                        type: 'map',
+                        map: 'china', // 自定义扩展图表类型
+                        itemStyle: {
+                            normal: { label: { show: true } },
+                            emphasis: { label: { show: true } }
+                        },
+                        label:{
+                            show: true
+                        },
+                        emphasis: { 
+                            label: { 
+                                show: true 
+                            } 
+                        },
+                        data: this.mydata
+                    },
                     {
                         name: '地区热度',
                         // 表的类型 这里是散点
                         type: 'scatter',
                         // 使用地理坐标系，通过 geoIndex 指定相应的地理坐标系组件
                         coordinateSystem: 'geo',
-                        // data: [],
-                        data: convertData(this.confirmToday),
+                        data: [],
+                        data: convertData(this.mydata),
                         symbolSize: function (val) {
                             return val[2] / 10;
                         },
-                        // // 鼠标悬浮的时候在圆点上显示数值
-                        // label: {
-                        //     normal: {
-                        //         show: false
-                        //     },
-                        //     emphasis: {
-                        //         show: false
-                        //     }
-                        // },
+                        // 标记的大小
+                        symbolSize: 12,
+                        // 鼠标悬浮的时候在圆点上显示数值
                         label: {
-                            formatter: '{b}',
-                            position: 'right',
-                            show: false
-                        },
-                        emphasis: {
-                            label: {
-                                show: true
+                            normal: {
+                                show: false
+                            },
+                            emphasis: {
+                                show: false
                             }
                         },
                         itemStyle: {
                             normal: {
                                 color: '#ddb926'
                             },
-                            // 鼠标悬浮的时候圆点样式变化
-                            emphasis: {
-                                borderColor: '#fff',
+                        // 鼠标悬浮的时候圆点样式变化
+                        emphasis: {
+                            borderColor: '#fff',
                                 borderWidth: 1
                             }
                         }
@@ -475,8 +361,8 @@ export default {
                         type: 'effectScatter',
                         // 使用地理坐标系，通过 geoIndex 指定相应的地理坐标系组件
                         coordinateSystem: 'geo',
-                        // data: [],
-                        data: convertData(this.confirmToday.sort(function (a, b) {
+                        data: [],
+                        data: convertData(this.mydata.sort(function (a, b) {
                             return b.value - a.value;
                         }).slice(0, 6)),
                         symbolSize: function (val) {
@@ -486,18 +372,15 @@ export default {
                             value: 2
                         },
                         // 标记的大小
-                        // symbolSize: 12,
+                        symbolSize: 12,
                         showEffectOn: 'render',
                         rippleEffect: {
-                            brushType: 'stroke'
+                        brushType: 'stroke'
                         },
                         hoverAnimation: true,
                         label: {
                             normal: {
                                 show: false
-                            },
-                            emphasis: {
-                                formatter: '{@[3]}',
                             }
                         },
                         itemStyle: {
@@ -509,163 +392,17 @@ export default {
                         },
                         zlevel: 1
                     },
-                    {
-                        name: '损失统计',
-                        type: 'map',
-                        map: 'china',
-                        coordinateSystem: 'geo',
-                        itemStyle: {
-                            normal: { label: { show: true } },
-                            emphasis: { label: { show: true } }
-                        },
-                        label: {
-                            formatter: '{b}',
-                            position: 'right',
-                            show: false
-                        },
-                        // label:{
-                        //     show: true
-                        // },
-                        // emphasis: { 
-                        //     label: { 
-                        //         show: true 
-                        //     } 
-                        // },
-                        data: this.confirmToday,
-                    },
                 ]
             };
                         // 基于准备好的dom，初始化echarts实例
-            this.myChart = this.$echarts.init(document.getElementById('main'));
-            this.myChart.setOption(this.option);
+            let myChart = this.$echarts.init(document.getElementById('main'));
+            myChart.setOption(this.option);
+
 
         },
         randomData() {  
             return Math.round(Math.random() * 500);  
-        },
-        run(){
-            // 根据data获取不同省份对应的地理信息
-            const geoCoordMap = this.geoCoordMap;
-            var convertData = function (data) {
-                // console.log('convertData');
-                // console.log(data);
-                var res = [];
-                for (var i = 0; i < data.length; i++) {
-                    var geoCoord = geoCoordMap[data[i].name];
-                    if (geoCoord) {
-                        res.push({
-                            name: data[i].name,
-                            value: geoCoord.concat(data[i].value)
-                        });
-                    }
-                }
-                // console.log(res);
-                return res;
-            };
-
-            const state = {
-                geoCoordMap: {'香港特别行政区': [114.08, 22.2], '澳门特别行政区': [113.33, 22.13], '台北': [121.5, 25.03]/*等等*/},
-                // 发光的城市
-                showCityNumber: 5,
-                showCount: 0,
-                // 是否需要loading
-                isLoading: true
-            }
-
-            var dataConfirm = this.confirmData;
-            var todayConfirm = this.confirmToday;
-            var todayOrigin = this.originToday;
-            console.log(this.date);
-            
-            // console.log('read')
-            // console.log(this.confirmToday);
-            // console.log(this.confirmData);
-            // console.log(this.recoveryData);
-            // console.log(this.deadData);
-            // console.log('***');
-
-            for(var i = 0; i <todayConfirm.length ; i++) {
-                // console.log('runfun');
-                // console.log(i);comfirmData
-                // console.log(this.confirmData);
-
-                
-                let dc = this.confirmData[i].value;
-                let dr = this.recoveryData[i].value;
-                let dd = this.deadData[i].value;
-
-                let idx = this.date;
-                // todayOrigin[i].value = dc[idx] - dr[idx] - dd[idx];
-                todayConfirm[i].value = dc[idx];
-
-                // console.log('assignment');
-                // console.log(i);
-                // console.log(this.confirmData[i]);
-                // console.log(this.recoveryData[i]);
-                // console.log(this.deadData[i]);
-                // console.log(dc);
-                // console.log(idx);
-                // console.log(dc[idx]);
-                // console.log(this.originToday[i]);
-                // console.log(this.originToday[i].value);
-                // console.log(this.originToday[i]);
-
-                // var res = {
-                //     name: this.originToday[i].name,
-                //     value: dc[idx],
-                // }
-                // console.log(res);
-                // this.originToday[i] = res;
-                // console.log(this.originToday[i]);
-                // console.log(this.originToday[i].value);
-                // console.log(this.originToday[i]);
-                
-                // console.log('endtest');
-
-            }
-            // this.confirmToday = this.originToday;
-            var dataSeries1 = this.option.series[0].data;
-            var result1 = convertData(todayConfirm);
-            
-            for(var i =0; i< dataSeries1.length; i++)
-            {
-                dataSeries1[i] = result1[i];
-            }
-
-            // this.confirmToday = this.originToday;
-            // var dataSeries2 = this.option.series[1].data;   
-            // console.log('test1');
-            // console.log(this.confirmData);
-            // console.log(this.originToday);
-            // console.log(this.confirmToday);
-            // console.log(this.option.series[1].data);
-            // console.log('test2');
-
-            // var result2 = convertData(this.confirmToday.sort(function (a, b) {
-            //                 return b.value - a.value;
-            //             }).slice(0, 6));
-
-            // console.log('test3');
-            // console.log(this.originToday);
-            // console.log(this.confirmToday);
-            // console.log(this.option.series[1].data);
-            // console.log('test4');
-
-            // for(var i =0; i< dataSeries2.length; i++)
-            // {
-            //     dataSeries2[i] = result2[i];
-            // }
-            // console.log(this.option.series[1].data);
-
-            this.myChart.setOption(this.option);
-            this.date = this.date + 1;
-            if(this.date === 24)
-            {
-                this.date = 0;
-            }
-
-
-        }          
+        }             
     },
 }
 </script>
