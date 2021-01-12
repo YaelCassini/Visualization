@@ -311,7 +311,7 @@ export default {
                         }
                     },
                 },
-                backgroundColor: '#F7F7F7',
+                backgroundColor: '#FFFFFF',
                 title: {
                     text: '疫情地理信息',
                     subtext: '中国地图',
@@ -358,7 +358,8 @@ export default {
                     orient: 'horizontal',
                     inRange: {
                         color: ['#DDDDDD', '#026FDD']
-                    }
+                    },
+                    opacity:0.3,
                 },
                 series: [
                     {
@@ -373,6 +374,7 @@ export default {
                             console.log(val[2]);
                             return val[2] / 10;
                         },
+                        opacity:0.3,
                         tooltip: {
                             trigger: 'item',
                             // formatter: '{c}',
@@ -410,6 +412,8 @@ export default {
                                 borderWidth: 1
                             }
                         },
+                        animationDuration: 300,
+                        animationDurationUpdate: 300,
                     },
                     {
                         name: '治愈',
@@ -450,7 +454,8 @@ export default {
                                 borderWidth: 1
                             }
                         },
-                        
+                        animationDuration: 300,
+                        animationDurationUpdate: 300,
                     },
                     {
                         name: '死亡',
@@ -491,6 +496,8 @@ export default {
                                 borderWidth: 1
                             }
                         },
+                        animationDuration: 300,
+                        animationDurationUpdate: 300,
                         
                     },
                     {
