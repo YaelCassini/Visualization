@@ -297,7 +297,7 @@ export default {
             .attr('cursor', 'pointer')
             .attr('pointer-events', 'all')
         // 绘制节点
-        const dataset = [ 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 76, 77, 78 ,79, 80]
+        const dataset = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 76, 77, 78, 79, 80]
         var leftenter = this.gleftnode.selectAll('g')
                 .data(dataset)        
                 .enter()
@@ -392,7 +392,7 @@ export default {
         // 按dataconfirmLeft排序(左)
         for (let i = 0; i < dataconfirmLeft.length; i++) {
             for (let k = i + 1; k < dataconfirmLeft.length; k++) {
-                if (dataconfirmLeft[i] + datarecoveryLeft[i] + datadeadLeft[i] < dataconfirmLeft[k] + datarecoveryLeft[k] + datadeadLeft[k] ) {
+                if (dataconfirmLeft[i] + datarecoveryLeft[i] + datadeadLeft[i] < dataconfirmLeft[k] + datarecoveryLeft[k] + datadeadLeft[k]) {
                     var tmp = dataconfirmLeft[i]
                     dataconfirmLeft[i] = dataconfirmLeft[k]
                     dataconfirmLeft[k] = tmp
@@ -467,7 +467,7 @@ export default {
                     break
                 }
             }
-            if (flag === 0){
+            if (flag === 0) {
                 this.linkdata[i] = {source: {x: 20, y: 70 + 25 * i}, target: {x: 20, y: 70 + 25 * i}}
             }
         }
