@@ -311,7 +311,7 @@ export default {
                         }
                     },
                 },
-                backgroundColor: '#FFFFFF',
+                backgroundColor: '#F7F7F7',
                 title: {
                     text: '疫情地理信息',
                     subtext: '中国地图',
@@ -331,7 +331,7 @@ export default {
                     orient: 'vertical',
                     left: 'left',
                     top: 'top',
-                    data: ['确诊', '治愈','死亡', 'top5'],
+                    data: ['确诊', 'top5'],
                     textStyle: {
                         color: '#000'
                     }
@@ -347,39 +347,62 @@ export default {
                     //     saveAsImage: {}
                     // }
                 },
-                visualMap: {
-                    max: 1000,
-                    min: 0,
-                    text: ['高', '低'],
-                    realtime: false,
-                    calculable: false,
-                    itemHeight: '200',
-                    inverse: false, // 翻转
-                    orient: 'horizontal',
-                    inRange: {
-                        color: ['#DDDDDD', '#026FDD']
-                    },
-                    opacity:0.3,
-                },
+                // visualMap: {
+                //     max: 1000,
+                //     min: 0,
+                //     text: ['高', '低'],
+                //     realtime: false,
+                //     calculable: false,
+                //     itemHeight: '200',
+                //     inverse: false, // 翻转
+                //     orient: 'horizontal',
+                //     inRange: {
+                //         color: ['#DDDDDD', '#026FDD']
+                //     }
+                // },
                 series: [
+                    // {
+                    //     name: '损失统计',
+                    //     type: 'map',
+                    //     map: 'china',
+                    //     // coordinateSystem: 'geo',
+                    //     itemStyle: {
+                    //         normal: { label: { show: true } },
+                    //         emphasis: { label: { show: true } }
+                    //     },
+                    //     label: {
+                    //         formatter: function (params) {
+                    //             return params.name + ' : ' + params.value[3]
+                    //         },
+                    //         position: 'right',
+                    //         show: false
+                    //     },
+                    //     // label:{
+                    //     //     show: true
+                    //     // },
+                    //     // emphasis: { 
+                    //     //     label: { 
+                    //     //         show: true 
+                    //     //     } 
+                    //     // },
+                    //     data: this.confirmToday,
+                    // },
                     {
                         name: '确诊',
                         // 表的类型 这里是散点
-                        type: 'effectScatter',
+                        type: 'scatter',
                         // 使用地理坐标系，通过 geoIndex 指定相应的地理坐标系组件
                         coordinateSystem: 'geo',
                         // data: [],
                         data: convertData(this.confirmToday),
                         symbolSize: function (val) {
-                            console.log(val[2]);
-                            return val[2] / 10;
+                            return val[2] / 50;
                         },
-                        opacity:0.3,
                         tooltip: {
                             trigger: 'item',
                             // formatter: '{c}',
                             formatter: function (params) {
-                                return params.name + ' : ' + params.value[2]
+                                return params.name + ' : ' + params.value[3]
                             }
                         },
                         visualMap:false,
@@ -412,8 +435,6 @@ export default {
                                 borderWidth: 1
                             }
                         },
-                        animationDuration: 300,
-                        animationDurationUpdate: 300,
                     },
                     {
                         name: '治愈',
@@ -424,7 +445,7 @@ export default {
                         // data: [],
                         data: convertData(this.recoveryToday),
                         symbolSize: function (val) {
-                            return val[2] / 10;
+                            return val[2] / 5;
                         },
                         tooltip: {
                             trigger: 'item',
@@ -454,8 +475,7 @@ export default {
                                 borderWidth: 1
                             }
                         },
-                        animationDuration: 300,
-                        animationDurationUpdate: 300,
+                        
                     },
                     {
                         name: '死亡',
@@ -496,8 +516,6 @@ export default {
                                 borderWidth: 1
                             }
                         },
-                        animationDuration: 300,
-                        animationDurationUpdate: 300,
                         
                     },
                     {
@@ -539,32 +557,6 @@ export default {
                         },
                         zlevel: 1
                     },
-                    // {
-                    //     name: '地图',
-                    //     type: 'map',
-                    //     map: 'china',
-                    //     // coordinateSystem: 'geo',
-                    //     itemStyle: {
-                    //         normal: { label: { show: true } },
-                    //         emphasis: { label: { show: true } }
-                    //     },
-                    //     label: {
-                    //         formatter: function (params) {
-                    //             return params.name + ' : ' + params.value[3]
-                    //         },
-                    //         position: 'right',
-                    //         show: false
-                    //     },
-                    //     // label:{
-                    //     //     show: true
-                    //     // },
-                    //     // emphasis: { 
-                    //     //     label: { 
-                    //     //         show: true 
-                    //     //     } 
-                    //     // },
-                    //     data: this.confirmToday,
-                    // },
 
                 ]
             };
@@ -594,14 +586,14 @@ export default {
                 return res;
             };
 
-            // const state = {
-            //     geoCoordMap: {'香港特别行政区': [114.08, 22.2], '澳门特别行政区': [113.33, 22.13], '台北': [121.5, 25.03]/*等等*/},
-            //     // 发光的城市
-            //     showCityNumber: 5,
-            //     showCount: 0,
-            //     // 是否需要loading
-            //     isLoading: true
-            // }
+            const state = {
+                geoCoordMap: {'香港特别行政区': [114.08, 22.2], '澳门特别行政区': [113.33, 22.13], '台北': [121.5, 25.03]/*等等*/},
+                // 发光的城市
+                showCityNumber: 5,
+                showCount: 0,
+                // 是否需要loading
+                isLoading: true
+            }
 
             var dataConfirm = this.confirmData;
             var dataRecovery = this.recoveryData;
@@ -610,12 +602,21 @@ export default {
             var todayConfirm = this.confirmToday;
             var todayRecovery = this.recoveryToday;
             var todayDead = this.deadToday;
-
+            // var todayOrigin = this.originToday;
+            // console.log(this.date);           
+            // console.log('read')
+            // console.log(this.confirmToday);
+            // console.log(this.confirmData);
+            // console.log(this.recoveryData);
+            // console.log(this.deadData);
+            // console.log('***');
 
             for(var i = 0; i <todayConfirm.length ; i++) {
                 // console.log('runfun');
                 // console.log(i);comfirmData
-                // console.log(this.confirmData);                
+                // console.log(this.confirmData);
+
+                
                 let dc = this.confirmData[i].value;
                 let dr = this.recoveryData[i].value;
                 let dd = this.deadData[i].value;
@@ -625,18 +626,78 @@ export default {
                 todayConfirm[i].value = dc[idx];
                 todayRecovery[i].value = dr[idx];
                 todayDead[i].value = dd[idx];
-            }
 
+                // console.log('assignment');
+                // console.log(i);
+                // console.log(this.confirmData[i]);
+                // console.log(this.recoveryData[i]);
+                // console.log(this.deadData[i]);
+                // console.log(dc);
+                // console.log(idx);
+                // console.log(idx);
+                // console.log(dc[idx]);
+                // console.log(dr[idx]);
+                // console.log(dd[idx]);
+                // console.log(this.confirmToday[i]);
+                // console.log(this.confirmToday[i].value);
+                // console.log(this.confirmToday[i]);
+
+                // var res = {
+                //     name: this.originToday[i].name,
+                //     value: dc[idx],
+                // }
+                // console.log(res);
+                // this.originToday[i] = res;
+                // console.log(this.originToday[i]);
+                // console.log(this.originToday[i].value);
+                // console.log(this.originToday[i]);
+                
+                // console.log('endtest');
+
+            }
+            // // this.confirmToday = this.originToday;
+            // var dataSeries1 = this.option.series[0].data;
+            // var result1 = convertData(todayConfirm);
             this.option.series[0].data = convertData(todayConfirm);
             this.option.series[1].data = convertData(todayRecovery);
             this.option.series[2].data = convertData(todayDead);
+            
+            // for(var i =0; i< dataSeries1.length; i++)
+            // {
+            //     dataSeries1[i] = result1[i];
+            // }
 
-            // console.log('&&&&&&');
-            // console.log(this.date);
-            // console.log(todayConfirm);
-            // console.log(this.option.series[0].data);
-            // console.log(this.option.series[0].data);
-            // console.log('$$$$$$');   
+            // var dataSeries3 = this.option.series[2].data;
+            
+            // for(var i =0; i< dataSeries1.length; i++)
+            // {
+            //     dataSeries1[i] = todayConfirm[i];
+            // }
+
+            // this.confirmToday = this.originToday;
+            // var dataSeries2 = this.option.series[1].data;   
+            // console.log('test1');
+            // console.log(this.confirmData);
+            // console.log(this.originToday);
+            // console.log(this.confirmToday);
+            // console.log(this.option.series[1].data);
+            // console.log('test2');
+
+            // var result2 = convertData(this.confirmToday.sort(function (a, b) {
+            //                 return b.value - a.value;
+            //             }).slice(0, 6));
+
+            // console.log('test3');
+            // console.log(this.originToday);
+            // console.log(this.confirmToday);
+            // console.log(this.option.series[1].data);
+            // console.log('test4');
+
+            // for(var i =0; i< dataSeries2.length; i++)
+            // {
+            //     dataSeries2[i] = result2[i];
+            // }
+            // console.log(this.option.series[1].data);
 
             this.myChart.setOption(this.option);
             this.date = this.date + 1;
