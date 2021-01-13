@@ -7,8 +7,9 @@
     </div>
   </div>
 </template>
-
+ 
 <script>
+/* eslint-disable */
 import * as d3 from 'd3'
 import echarts from 'echarts/lib/echarts';
 import 'echarts/map/js/china.js';
