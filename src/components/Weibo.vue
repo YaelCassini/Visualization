@@ -10,11 +10,11 @@
   </div>
 </template>
 
-
+ 
 <script>
+/* eslint-disable */
 import * as d3 from 'd3'
-import * as echarts from 'echarts'
-// import echarts from 'echarts/lib/echarts';
+import echarts from 'echarts/lib/echarts';
 import 'echarts/map/js/china.js';
 // 散点图
 import 'echarts/lib/chart/scatter';
@@ -51,6 +51,7 @@ export default {
             dataxinguan: data1,
             topicdata: topic,
             worddata:wordjson
+           
         }    
     },
     mounted() {
