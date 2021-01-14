@@ -261,7 +261,7 @@ export default {
         _this.init()
         _this.drawMap()
         setTimeout(function () { _this.run() }, 0)
-        setInterval(function () { _this.run() }, 1000)
+        setInterval(function () { _this.run() }, 3000)
     },
     methods:{
         init () {
@@ -392,6 +392,8 @@ export default {
                             }
                         },
                         visualMap:false,
+                        showEffectOn: 'emphasis',
+                        hoverAnimation: true,
                         // 鼠标悬浮的时候在圆点上显示数值
                         label: {
                             normal: {
