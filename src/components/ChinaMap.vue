@@ -282,7 +282,7 @@ export default {
                         });
                     }
                 }
-                console.log(res);
+                // console.log(res);
                 return res;
             };
 
@@ -356,7 +356,8 @@ export default {
                     //     saveAsImage: {}
                     // }
                 },
-                visualMap: {
+                visualMap: [
+                    {
                     max: 1000,
                     min: 0,
                     text: ['高', '低'],
@@ -365,11 +366,11 @@ export default {
                     itemHeight: '200',
                     inverse: false, // 翻转
                     orient: 'horizontal',
-                    inRange: {
-                        color: ['#DDDDDD', '#026FDD']
-                    },
+                    // inRange: {
+                    //     color: ['#DDDDDD', '#026FDD']
+                    // },
                     opacity:0.3,
-                },
+                }],
                 series: [
                     {
                         name: '确诊',
@@ -380,8 +381,9 @@ export default {
                         // data: [],
                         data: convertData(this.confirmToday),
                         symbolSize: function (val) {
-                            console.log(val[2]);
-                            return val[2] / 10;
+                            console.log(Math.log(val[2])/Math.log(2) + 1);
+                            // return 10*Math.log(val[2])/Math.log(2) + 1;
+                            return val[2]/10;
                         },
                         opacity:0.3,
                         tooltip: {
@@ -392,6 +394,7 @@ export default {
                             }
                         },
                         visualMap:false,
+                        // showEffectOn: 'render',
                         showEffectOn: 'emphasis',
                         hoverAnimation: true,
                         // 鼠标悬浮的时候在圆点上显示数值
@@ -425,6 +428,7 @@ export default {
                         },
                         animationDuration: 300,
                         animationDurationUpdate: 300,
+                        zlevel:1
                     },
                     {
                         name: '治愈',
@@ -435,7 +439,7 @@ export default {
                         // data: [],
                         data: convertData(this.recoveryToday),
                         symbolSize: function (val) {
-                            return val[2] / 10;
+                            return Math.log(val[2])/Math.log(2) + 1;
                         },
                         tooltip: {
                             trigger: 'item',
@@ -467,6 +471,7 @@ export default {
                         },
                         animationDuration: 300,
                         animationDurationUpdate: 300,
+                        zlevel:2
                     },
                     {
                         name: '死亡',
@@ -477,7 +482,7 @@ export default {
                         // data: [],
                         data: convertData(this.deadToday),
                         symbolSize: function (val) {
-                            return val[2] / 5;
+                            return Math.log(val[2])/Math.log(2) + 1;
                         },
                         tooltip: {
                             trigger: 'item',
@@ -509,63 +514,64 @@ export default {
                         },
                         animationDuration: 300,
                         animationDurationUpdate: 300,
+                        zlevel:3
+
                         
                     },
-                    {
-                        name: 'top5',
-                        // 表的类型 这里是散点
-                        type: 'effectScatter',
-                        // 使用地理坐标系，通过 geoIndex 指定相应的地理坐标系组件
-                        coordinateSystem: 'geo',
-                        // data: [],
-                        data: convertData(this.confirmToday.sort(function (a, b) {
-                            return b.value - a.value;
-                        }).slice(0, 6)),
-                        symbolSize: function (val) {
-                            return val[2] / 10;
-                        },
-                        encode: {
-                            value: 2
-                        },
-                        // 标记的大小
-                        showEffectOn: 'render',
-                        rippleEffect: {
-                            brushType: 'stroke'
-                        },
-                        hoverAnimation: true,
-                        label: {
-                            normal: {
-                                show: false
-                            },
-                            emphasis: {
-                                formatter: '{@[3]}',
-                            }
-                        },
-                        itemStyle: {
-                            normal: {
-                                color: '#f4e925',
-                                shadowBlur: 10,
-                                shadowColor: '#333'
-                            }
-                        },
-                        zlevel: 1
-                    },
+                    // {
+                    //     name: 'top5',
+                    //     // 表的类型 这里是散点
+                    //     type: 'effectScatter',
+                    //     // 使用地理坐标系，通过 geoIndex 指定相应的地理坐标系组件
+                    //     coordinateSystem: 'geo',
+                    //     // data: [],
+                    //     data: convertData(this.confirmToday.sort(function (a, b) {
+                    //         return b.value - a.value;
+                    //     }).slice(0, 6)),
+                    //     symbolSize: function (val) {
+                    //         return val[2] / 10;
+                    //     },
+                    //     encode: {
+                    //         value: 2
+                    //     },
+                    //     // 标记的大小
+                    //     showEffectOn: 'render',
+                    //     rippleEffect: {
+                    //         brushType: 'stroke'
+                    //     },
+                    //     hoverAnimation: true,
+                    //     label: {
+                    //         normal: {
+                    //             show: false
+                    //         },
+                    //         emphasis: {
+                    //             formatter: '{@[3]}',
+                    //         }
+                    //     },
+                    //     itemStyle: {
+                    //         normal: {
+                    //             color: '#ff0000',
+                    //             shadowBlur: 10,
+                    //             shadowColor: '#333'
+                    //         }
+                    //     },
+                    //     zlevel: 4
+                    // },
                     // {
                     //     name: '地图',
                     //     type: 'map',
                     //     map: 'china',
-                    //     // coordinateSystem: 'geo',
-                    //     itemStyle: {
-                    //         normal: { label: { show: true } },
-                    //         emphasis: { label: { show: true } }
-                    //     },
-                    //     label: {
-                    //         formatter: function (params) {
-                    //             return params.name + ' : ' + params.value[3]
-                    //         },
-                    //         position: 'right',
-                    //         show: false
-                    //     },
+                    //     // itemStyle: {
+                    //     //     normal: { label: { show: true } },
+                    //     //     emphasis: { label: { show: true } }
+                    //     // },
+                    //     // label: {
+                    //     //     formatter: function (params) {
+                    //     //         return params.name + ' : ' + params.value[3]
+                    //     //     },
+                    //     //     position: 'right',
+                    //     //     show: false
+                    //     // },
                     //     // label:{
                     //     //     show: true
                     //     // },
@@ -575,6 +581,7 @@ export default {
                     //     //     } 
                     //     // },
                     //     data: this.confirmToday,
+                    //     zlevel:0
                     // },
 
                 ]
