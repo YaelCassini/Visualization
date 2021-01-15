@@ -52,6 +52,8 @@ export default {
       // SARS数据
       // 新增确诊 从1.17开始 初期数据未公开
       dataS1:[100, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 10 /* 由于信息未公开 118分摊到前面的每日*/, 45/* 2.6 */, 14, 14, 14, 25, 25/* 2.11 */, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 34/* 2.28 */, 6, 6, 6, 7/* 3.4 25*/, 3, 3, 4/* 3.7 11*/, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 23/* 4.10 465*/, 70, 70, 70, 70, 70, 70, 70, 70, 70, 81 /* 4.20 711*/, 194, 159, 147, 125, 180, 154, 161, 203, 202, 166, 187, 176, 181, 163, 160, 138, 159, 146, 118, 85, 69, 75, 80, 55, 52, 39, 28, 28, 12, 17, 12, 26, 20, 34, 16, 8, 9],
+      // 累计数据
+      dataS2: [],
     }
   },
   mounted () {
@@ -61,6 +63,10 @@ export default {
   created () {
     for(let i=0;i<this.data1.length;i++){
         this.data4[i] = this.data3[i] - this.data2[i] - this.data1[i]
+      }
+      this.dataS2[0]=this.dataS1[0]
+      for (let i=1;i<this.dataS1.length;i++){
+        this.dataS2[i] = this.dataS1[i]+this.dataS2[i-1]
       }
   },
   methods: {
@@ -339,6 +345,20 @@ export default {
               large: true,
           },
           // SARS
+          {              
+              name: 'SARS累计死亡',
+              type: 'bar',
+              barGap:'0%',
+              barCategoryGap:'0%',
+              xAxisIndex: 0,
+              yAxisIndex: 0,
+              data: this.dataS2,
+              // Set `large` for large data amount
+              large: true,
+              xAxisIndex: 1,
+              yAxisIndex: 1,
+
+          },
           ]
       },
         this.chart = this.$echarts.init(document.getElementById('main'))
