@@ -1,6 +1,6 @@
 <template>
   <div class="Home">
-    <h1>{{ msg }}</h1>
+    <h1 style=" font-size: 48px; font-weight: bold; color:#0091FF">{{ title }}</h1>
     <h2>作者：{{ author }}</h2>
     <ul>
       <li><a href="http://localhost:8080/#/" target="_blank">Home</a></li>
@@ -14,12 +14,6 @@
             <el-radio-button :label="false">TOTAL</el-radio-button>
         </el-radio-group>
         </span>
-    <div v-show="radioButton" >
-        <div><h1>NEW CASES</h1></div>
-    </div>
-    <div v-show="!radioButton">
-        <div><h1>TOTAL CASES</h1></div>
-    </div>
 
     <div style="margin: 0 auto; display: flex; flex-direction: row; justify-content: space-around;">
     <div id="main" style="width: 1200px; height: 800px;"></div>
@@ -37,6 +31,7 @@ export default {
   data () {
     return {
       msg: '这个界面是上下镜像对称的柱状图，展示每日新增和累计新增，死亡与重要政策发布节点',
+      title:'ARE WE DOING BETTER?',
       author: '李奕扬',
       radioButton:true,
       chartOption: 0,
@@ -76,9 +71,9 @@ export default {
       this.optionNew = {
           title: {
               textStyle: {
-                color: '#000000',
+                color: '#BCBBB9',
                 fontWeight: 'bolder',
-                fontSize: 32
+                fontSize: 37
             },
               text: 'Daily Cases',
               left: 10,
@@ -264,9 +259,9 @@ export default {
       this.optionTotal = {
           title: {
               textStyle: {
-                color: '#000000',
+                color: '#BCBBB9',
                 fontWeight: 'bolder',
-                fontSize: 32
+                fontSize: 37
             },
               text: 'Daily Cases',
               left: 10,
