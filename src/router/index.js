@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import ChinaMap from '@/components/ChinaMap'
 import Order from '@/components/Order'
 import Weibo from '@/components/Weibo'
+import Senses from '@/components/Senses'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/Weibo',
       name: 'Weibo',
       component: Weibo
+    },
+    {
+      path: '/Senses',
+      name: 'Senses',
+      component: Senses
     }
   ]
 })

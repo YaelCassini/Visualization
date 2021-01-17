@@ -517,12 +517,12 @@ export default {
                 .attr('fill', 'none')
                 // .attr('stroke', '#999')
                 .attr('stroke', function(){
-                    var color=colorlist[iii]
+                    var color=colorlist[20-iii]
                     iii=iii+1
                     if(iii===20) iii=0
                     return color
                 })
-                .attr('stroke-opacity', 0.4)
+                .attr('stroke-opacity', 0.8)
                 .attr('stroke-width', 6)
         })
         this.chartLeft.setOption(this.optionLeft)
@@ -539,5 +539,6 @@ export default {
 <style scoped>
 h1, h2 {
   font-weight: normal;
+  color:black;
 }
 </style>
