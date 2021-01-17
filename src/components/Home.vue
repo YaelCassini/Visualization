@@ -8,7 +8,6 @@
             <el-radio-button :label="false">TOTAL</el-radio-button>
         </el-radio-group>
         </span>
-
     <div style="margin: 0 auto; display: flex; flex-direction: row; justify-content: space-around;">
     <div id="main" style="width: 1200px; height: 500px;"></div>
 
