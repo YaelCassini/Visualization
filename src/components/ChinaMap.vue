@@ -27,9 +27,9 @@ import 'echarts/lib/component/tooltip';
 // 地图geo
 import 'echarts/lib/component/geo';
 
-import confirmdatajson from '../data/confirmData.json'
-import recoverydatajson from '../data/recoveryData.json'
-import deaddatajson from '../data/deadData.json'
+import confirmdatajson from '../data/confirmData2.json'
+import recoverydatajson from '../data/recoveryData2.json'
+import deaddatajson from '../data/deadData2.json'
 
 
 export default {
