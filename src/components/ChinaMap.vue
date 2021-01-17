@@ -444,8 +444,11 @@ export default {
                     inverse: false, // 翻转
                     orient: 'horizontal',
                     inRange: {
+                        // 改颜色
+                        // 地图颜色深度
                         color: ['#FFFF00', '#026FDD']
                     },
+                    // 透明度
                     opacity:0.3,
                     seriesIndex: 2,
                 }],
@@ -476,11 +479,15 @@ export default {
                         },
                         itemStyle: {
                             normal: {
+                                // 改颜色
+                                // 新冠散点颜色及透明度
                                 color: '#FFFFFF',
                                 opacity: 1
                             },
                             // 鼠标悬浮的时候圆点样式变化
                             emphasis: {
+                                // 改颜色
+                                // 新冠散点外边界颜色及透明度
                                 borderColor: '#000000',
                                 borderWidth: 1
                             }
@@ -496,7 +503,6 @@ export default {
                         // data: [],
                         data: convertData(this.dataToday2),
                         symbolSize: function (val) {
-                            // console.log(Math.log(val[2]+1)/Math.log(2) + 10);
                             return 10*Math.log(val[2]+1)/Math.log(2) + 10;
                         },
                         opacity:0.3,
@@ -514,11 +520,15 @@ export default {
                         },
                         itemStyle: {
                             normal: {
+                                // 改颜色
+                                // 非典散点颜色及透明度
                                 color: '#000000',
                                 opacity: 1
                             },
                             // 鼠标悬浮的时候圆点样式变化
                             emphasis: {
+                                // 改颜色
+                                // 非典散点边界颜色及透明度
                                 borderColor: '#FFFFFF',
                                 borderWidth: 1
                             }
