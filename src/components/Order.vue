@@ -127,7 +127,7 @@ export default {
             }
         },
         legend: {
-            data: ['确诊人数', '治愈人数', '死亡人数']
+            data: ['治疗人数', '治愈人数', '死亡人数']
         },
         grid: {
             left: '3%',
@@ -155,14 +155,14 @@ export default {
         animationEasingUpdate: 'linear',
         series: [
                 {
-                    name: '确诊人数',
+                    name: '治疗人数',
                     type: 'bar',
                     stack: 'total',
                     emphasis: {
                         focus: 'series'
                     },
                     label: {
-                        show: true,
+                        show: false,
                         position: 'insideLeft',
                         valueAnimation: true
                     },
@@ -176,7 +176,7 @@ export default {
                         focus: 'series'
                     },
                     label: {
-                        show: true,
+                        show: false,
                         position: 'insideLeft',
                         valueAnimation: true
                     },
@@ -190,7 +190,7 @@ export default {
                         focus: 'series'
                     },
                     label: {
-                        show: true,
+                        show: false,
                         position: 'insideLeft',
                         valueAnimation: true
                     },
@@ -210,7 +210,7 @@ export default {
                 }
             },
             legend: {
-                data: ['确诊人数', '治愈人数', '死亡人数']
+                data: ['治疗人数', '治愈人数', '死亡人数']
             },
             grid: {
                 left: '3%',
@@ -236,14 +236,14 @@ export default {
             animationEasingUpdate: 'linear',
             series: [
                 {
-                    name: '确诊人数',
+                    name: '治疗人数',
                     type: 'bar',
                     stack: 'total',
                     emphasis: {
                         focus: 'series'
                     },
                     label: {
-                        show: true,
+                        show: false,
                         position: 'insideRight',
                         valueAnimation: true
                     },
@@ -257,7 +257,7 @@ export default {
                         focus: 'series'
                     },
                     label: {
-                        show: true,
+                        show: false,
                         position: 'insideRight',
                         valueAnimation: true
                     },
@@ -271,7 +271,7 @@ export default {
                         focus: 'series'
                     },
                     label: {
-                        show: true,
+                        show: false,
                         position: 'insideRight',
                         valueAnimation: true
                     },
@@ -368,11 +368,11 @@ export default {
 
       run () {
         // 非典
-        var dataconfirmLeft = this.optionLeft.series[0].data // 所有省当天的确诊人数
+        var dataconfirmLeft = this.optionLeft.series[0].data // 所有省当天的治疗人数
         var datarecoveryLeft = this.optionLeft.series[1].data // 所有省当天的康复人数
         var datadeadLeft = this.optionLeft.series[2].data // 所有省当天的死亡人数
         // 新冠
-        var dataconfirmRight = this.optionRight.series[0].data // 所有省当天的确诊人数
+        var dataconfirmRight = this.optionRight.series[0].data // 所有省当天的治疗人数
         var datarecoveryRight = this.optionRight.series[1].data // 所有省当天的康复人数
         var datadeadRight = this.optionRight.series[2].data // 所有省当天的死亡人数
 
@@ -483,12 +483,20 @@ export default {
                 result.target[1] = data.target.y
                 return result
         }
+        let iii=0
+        const colorlist=['#100','#200','#300','#400','#500','#600','#700','#800','#900','#a00','#b00','#c00','#d00','#e00','#f00','#f10','#f20','#f30','#f40','#f50','#f60']
         let link = d3.linkHorizontal()
         this.svg.selectAll('.gLink').data(this.linkdata).join(enter => {
             enter.append('path')
                 .attr('d', d => link(handle(d)))
                 .attr('fill', 'none')
-                .attr('stroke', '#999')
+                // .attr('stroke', '#999')
+                .attr('stroke', function(){
+                    var color=colorlist[iii]
+                    iii=iii+1
+                    if(iii===20) iii=0
+                    return color
+                })
                 .attr('stroke-opacity', 0.4)
                 .attr('stroke-width', 6)
         })

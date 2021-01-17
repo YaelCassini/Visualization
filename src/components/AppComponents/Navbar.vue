@@ -3,16 +3,18 @@
   <!--可以根据这个链接里的选项改样式 https://element.eleme.io/#/zh-CN/component/menu -->
   <el-menu theme="dark" :default-active="activeIndex"
   class="el-menu-demo" mode="horizontal" @select="handleSelect" background-color="#000">
-    <el-menu-item index="Home">主界面</el-menu-item>
-    <el-menu-item index="2">地图</el-menu-item>
-    <el-menu-item index="3">各省排序</el-menu-item>
-    <el-menu-item index="4">微博话题</el-menu-item>
-    <el-submenu index="5">
-      <template slot="title">北京市疫情数学建模</template>
-      <el-menu-item index="5-1">新冠</el-menu-item>
-      <el-menu-item index="5-2">非典</el-menu-item>
-      <el-menu-item index="5-3">对比</el-menu-item>
-    </el-submenu>
+    <el-menu-item index="Home">
+      <router-link to="/">主界面</router-link>
+    </el-menu-item>
+    <el-menu-item index="2">
+      <router-link to="/ChinaMap">地图</router-link>
+    </el-menu-item>
+    <el-menu-item index="3">
+      <router-link to="/Order">各省排序</router-link>
+    </el-menu-item>
+    <el-menu-item index="4">
+      <router-link to="/Weibo">微博话题</router-link>
+    </el-menu-item>
   </el-menu>
 </template>
 
