@@ -26,6 +26,9 @@
     <el-menu-item index="4" @click="turntoweibo">
       微博话题
     </el-menu-item>
+    <el-menu-item index="5" @click="turntosenses">
+      情感分析
+    </el-menu-item>
   </el-menu>
 </header>
 </template>
@@ -52,6 +55,9 @@ export default {
       this.$router.push({ path: '/Order'})
     },
     turntoweibo () {
+      this.$router.push({ path: '/Senses'})
+    },
+    turntosenses () {
       this.$router.push({ path: '/Weibo'})
     }   
     }
