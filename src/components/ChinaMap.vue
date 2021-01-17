@@ -1,9 +1,7 @@
 <template>
   <div class="ChinaMap">
-    <h1>{{ msg }}</h1>
-    <h2>作者：{{ author }}</h2>
     <div style="margin:0 50 0 50">
-        <div id="main" style="width:100%;height:1000px"></div>
+        <div id="main" style="width:100%;height:680px;margin:0 auto;"></div>
     </div>
   </div>
 </template>
@@ -311,6 +309,7 @@ export default {
                 },
                 backgroundColor: '#FCFAF7',
                 title: {
+                    padding:30,
                     text: '疫情地理信息',
                     subtext: '中国地图',
                     left: 'center',

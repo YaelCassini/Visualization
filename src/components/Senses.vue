@@ -307,7 +307,10 @@ export default {
 
 <style scoped>
 h1, h2 {
-  font-weight: normal;
-  color:black;
+  /* font-weight: normal;
+  color:black; */
+  color: #0091FF;
+  font-size:48;
+  font-weight:bolder;
 }
 </style>
