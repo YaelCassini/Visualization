@@ -25,10 +25,10 @@ import 'echarts/lib/component/legend';
 import 'echarts/lib/component/tooltip';
 // 地图geo
 import 'echarts/lib/component/geo';
-import 'echarts-wordcloud';
+// import 'echarts-wordcloud';
 import 'echarts/theme/macarons.js'
-import "echarts-wordcloud/dist/echarts-wordcloud";
-import "echarts-wordcloud/dist/echarts-wordcloud.min";
+// import "echarts-wordcloud/dist/echarts-wordcloud";
+// import "echarts-wordcloud/dist/echarts-wordcloud.min";
 
 
 import dataw from './datawomen.json';
@@ -334,7 +334,6 @@ export default {
 
         },
         drawTopic() {
-
             // 指定图表的配置项和数据
             this.option2 = {
                 title: {
@@ -376,8 +375,6 @@ export default {
                         type: 'category',
                         data: function () {
                                 var list = [];
-                                console.log('testlist');
-                                console.log(list);
                                 for (var i = 1; i <= 31; i++) {
                                     list.push('12月' + i + '日');
                                 }
@@ -411,6 +408,64 @@ export default {
                         show: false,
                     }
                 ],
+                // series: [
+                //     {
+                //         name: '全国累计确诊人数',
+                //         type: 'line',
+                //         data: this.topicdata.data1,
+                //     },
+                //     {
+                //         name: '话题比例',
+                //         type: 'bar',
+                //         stack: '话题',
+                //         itemStyle: {
+                //             barBorderColor: 'rgba(0,0,0,0)',
+                //             color: 'rgba(0,0,0,0)'
+                //         },
+                //         emphasis: {
+                //             itemStyle: {
+                //                 barBorderColor: 'rgba(0,0,0,0)',
+                //                 color: 'rgba(0,0,0,0)'
+                //             }
+                //         },
+                //         data: this.topicdata.data1,
+                //     },
+                //     {
+                //         name: '政治话题',
+                //         type: 'bar',
+                //         stack: '话题',
+                //         yAxisIndex: 1,
+                //         data: this.topicdata.data2,
+                //     },
+                //     {
+                //         name: '疫情话题',
+                //         type: 'bar',
+                //         stack: '话题',
+                //         yAxisIndex: 1,
+                //         data: this.topicdata.data3,
+                //     },
+                //     {
+                //         name: '文化娱乐话题',
+                //         type: 'bar',
+                //         stack: '话题',
+                //         yAxisIndex: 1,
+                //         data: this.topicdata.data4,
+                //     },
+                //     {
+                //         name: '社会新闻话题',
+                //         type: 'bar',
+                //         stack: '话题',
+                //         yAxisIndex: 1,
+                //         data: this.topicdata.data5,
+                //     },
+                //     {
+                //         name: '其他话题',
+                //         type: 'bar',
+                //         stack: '话题',
+                //         yAxisIndex: 1,
+                //         data: this.topicdata.data6,
+                //     }
+                // ]
                 series: [
                     {
                         name: '全国累计确诊人数',
@@ -419,8 +474,13 @@ export default {
                     },
                     {
                         name: '话题比例',
-                        type: 'bar',
+                        type: 'line',
                         stack: '话题',
+                        smooth: true,
+                        areaStyle: {
+                            opacity: 0.8,
+                            color:'black'
+                        },
                         itemStyle: {
                             barBorderColor: 'rgba(0,0,0,0)',
                             color: 'rgba(0,0,0,0)'
@@ -435,35 +495,60 @@ export default {
                     },
                     {
                         name: '政治话题',
-                        type: 'bar',
+                        type: 'line',
+                        smooth: true,
+                        areaStyle: {
+                            opacity: 0.3,
+                            color:'blue'
+                        },
                         stack: '话题',
                         yAxisIndex: 1,
                         data: this.topicdata.data2,
                     },
                     {
                         name: '疫情话题',
-                        type: 'bar',
+                        type: 'line',
                         stack: '话题',
+                        smooth: true,
+                        areaStyle: {
+                            opacity: 0.3,
+                            color:'gray'
+                        },
                         yAxisIndex: 1,
                         data: this.topicdata.data3,
                     },
                     {
                         name: '文化娱乐话题',
-                        type: 'bar',
+                        type: 'line',
                         stack: '话题',
+                        smooth: true,
+                        areaStyle: {
+                            opacity: 0.3,
+                            color:'green'
+                        },
                         yAxisIndex: 1,
                         data: this.topicdata.data4,
                     },
                     {
                         name: '社会新闻话题',
-                        type: 'bar',
+                        type: 'line',
                         stack: '话题',
+                        smooth: true,
+                        areaStyle: {
+                            opacity: 0.3,
+                            color:'yellow'
+                        },
                         yAxisIndex: 1,
                         data: this.topicdata.data5,
                     },
                     {
                         name: '其他话题',
-                        type: 'bar',
+                        type: 'line',
+                        smooth: true,
+                        areaStyle: {
+                            opacity: 0.3,
+                            color:'red'
+                        },
                         stack: '话题',
                         yAxisIndex: 1,
                         data: this.topicdata.data6,
