@@ -2,12 +2,6 @@
   <div class="Home">
     <h2  style=" font-size: 16px;  color:#D8D8D8; padding: 106px 0px 0px 0px;">{{ subTitle }}</h2>
     <h1 style="font-size: 48px; font-weight: bold; color:#0091FF; height:120px; padding: 20px 0px 0px 0px;">{{ title }}</h1>
-    <ul>
-      <li><a href="http://localhost:8080/#/" target="_blank">Home</a></li>
-      <li><a href="http://localhost:8080/#/ChinaMap" target="_blank">ChinaMap</a></li>
-      <li><a href="http://localhost:8080/#/Order" target="_blank">Order</a></li>
-      <li><a href="http://localhost:8080/#/Weibo" target="_blank">Weibo</a></li>
-    </ul>
         <span id="button1" style="height: 50px;width: 200px;margin-left: 650px">
         <el-radio-group v-model="radioButton" @change="change" size="medium" >
             <el-radio-button :label="true" >NEW</el-radio-button>
