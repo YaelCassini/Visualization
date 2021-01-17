@@ -13,7 +13,7 @@
   <text font-weight="bold" fill="#007fff" stroke="#000" stroke-width="0" x="7.76596" y="32.95877" id="svg_2" font-size="15" font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve">SARS</text>
   <text font-weight="bold" fill="#007fff" stroke="#000" stroke-width="0" x="0.95745" y="22.74601" id="svg_3" font-size="21" font-family="Helvetica, Arial, sans-serif" text-anchor="start" xml:space="preserve">*</text> </g>
 </svg>
-</el-menu-item>
+    </el-menu-item>
     <el-menu-item index="1" @click="turntohomepage">
       主界面
     </el-menu-item>

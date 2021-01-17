@@ -312,22 +312,25 @@ export default {
                         // 地图背景色
                         normal: {
                             areaColor: '#465471',
-                            borderColor: '#282F3C'
+                            borderColor: '#FFD562',
+                            opacity:0.5,
                         },
                         // 悬浮时
                         emphasis: {
-                            areaColor: '#465471'
+                            opacity:1
                             //areaColor: '#8796B4'
                         }
                     },
                 },
-                backgroundColor: '#FFFFFF',
+                backgroundColor: '#FCFAF7',
                 title: {
                     text: '疫情地理信息',
                     subtext: '中国地图',
                     left: 'center',
                     textStyle: {
-                        color: '#000'
+                        color: '#0091FF',
+                        fontSize:48,
+                        fontWeight:'bolder',
                     }
                 },
                 tooltip: {
@@ -419,7 +422,8 @@ export default {
                         },
                         itemStyle: {
                             normal: {
-                                color: '#DDDDDD'
+                                color: '#DDDDDD',
+                                opacity:0.4
                             },
                             // 鼠标悬浮的时候圆点样式变化
                             emphasis: {
@@ -462,12 +466,14 @@ export default {
                         },
                         itemStyle: {
                             normal: {
-                                color: '#026FDD'
+                                color: '#026FDD',
+                                opacity:0.4
                             },
                             // 鼠标悬浮的时候圆点样式变化
                             emphasis: {
                                 borderColor: '#fff',
-                                borderWidth: 1
+                                borderWidth: 1,
+                                opacity:1
                             }
                         },
                         animationDuration: 300,
@@ -505,7 +511,8 @@ export default {
                         },
                         itemStyle: {
                             normal: {
-                                color: '#FF0000'
+                                color: '#FF0000',
+                                opacity:0.4
                             },
                             // 鼠标悬浮的时候圆点样式变化
                             emphasis: {
@@ -558,32 +565,32 @@ export default {
                     //     },
                     //     zlevel: 4
                     // },
-                    // {
-                    //     name: '地图',
-                    //     type: 'map',
-                    //     map: 'china',
-                    //     // itemStyle: {
-                    //     //     normal: { label: { show: true } },
-                    //     //     emphasis: { label: { show: true } }
-                    //     // },
-                    //     // label: {
-                    //     //     formatter: function (params) {
-                    //     //         return params.name + ' : ' + params.value[3]
-                    //     //     },
-                    //     //     position: 'right',
-                    //     //     show: false
-                    //     // },
-                    //     // label:{
-                    //     //     show: true
-                    //     // },
-                    //     // emphasis: { 
-                    //     //     label: { 
-                    //     //         show: true 
-                    //     //     } 
-                    //     // },
-                    //     data: this.confirmToday,
-                    //     zlevel:0
-                    // },
+                     {
+                    name: '地图',
+                    type: 'map',
+                    map: 'china',
+                     itemStyle: {
+                         normal: { label: { show: true ,opacity:0.5} },
+                         emphasis: { label: { show: true, opacity:0.5} }
+                     },
+                     label: {
+                         formatter: function (params) {
+                             return params.name + ' : ' + params.value[3]
+                         },
+                         position: 'right',
+                         show: false
+                     },
+                     label:{
+                         show: true
+                     },
+                     emphasis: { 
+                         label: { 
+                             show: true 
+                         } 
+                     },
+                         data: this.confirmToday,
+                         zlevel:0
+                     },
 
                 ]
             };
