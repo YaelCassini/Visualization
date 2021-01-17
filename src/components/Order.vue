@@ -12,87 +12,23 @@
 
 <script>
 import * as d3 from 'd3'
+import covconfirm from '../data/confirmData1.json'
+import covrecovery from '../data/recoveryData1.json'
+import covdead from '../data/deadData1.json'
+import sarsconfirm from '../data/confirmData2.json'
+import sarsrecovery from '../data/recoveryData2.json'
+import sarsdead from '../data/deadData2.json'
 export default {
   name: 'order',
   data () {
     return {
       msg: '各省每日增长排名',
-      author: '张宇晴',
-      comfirmData: [
-        {name: '广东', value: [1213, 1317, 1330, 1344, 1359, 1374, 1379, 1382, 1395, 1399, 1405, 1412, 1421, 1432, 1441, 1453, 1465, 1478, 1485, 1502, 1504, 1506, 1509, 1509, 1510]},
-        {name: '山西', value: [32, 120, 141, 157, 162, 173, 195, 214, 243, 266, 300, 308, 312, 330, 341, 362, 373, 382, 395, 406, 417, 423, 427, 440, 444]},
-        {name: '北京', value: [22, 482, 558, 693, 774, 877, 990, 1116, 1212, 1363, 1464, 1586, 1682, 1796, 1829, 1927, 1997, 2094, 2188, 2236, 2290, 2332, 2380, 2428, 2467]},
-        {name: '广西', value: [12, 14, 14, 15, 16, 16, 16, 16, 16, 17, 18, 18, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21]},
-        {name: '湖南', value: [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6]},
-        {name: '四川', value: [4, 8, 8, 8, 8, 9, 10, 12, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 15, 15, 15, 15, 16, 17]},
-        {name: '上海', value: [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 6, 6, 6, 6, 7, 7, 7, 7, 7]},
-        {name: '内蒙', value: [0, 30, 33, 36, 47, 70, 74, 76, 114, 121, 128, 155, 181, 191, 226, 232, 253, 260, 269, 289, 295, 295, 296, 296, 296]},
-        {name: '河南', value: [0, 3, 6, 6, 8, 9, 10, 10, 11, 12, 12, 13, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15]},
-        {name: '宁夏', value: [0, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6]},
-        {name: '吉林', value: [0, 3, 7, 7, 7, 7, 7, 7, 7, 7, 7, 9, 14, 14, 18, 21, 23, 25, 26, 26, 26, 26, 27, 27, 30]},
-        {name: '浙江', value: [0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4]},
-        {name: '辽宁', value: [0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3]},
-        {name: '甘肃', value: [0, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 5, 5, 6, 6, 6, 7, 7, 8, 8, 8, 8]},
-        {name: '陕西', value: [0, 1, 2, 2, 2, 2, 5, 5, 5, 8, 8, 8, 9, 9, 9, 10, 10, 10, 11, 12, 12, 12, 12, 12, 12]},
-        {name: '天津', value: [0, 0, 5, 7, 8, 21, 22, 22, 43, 44, 49, 61, 73, 91, 100, 109, 120, 127, 132, 141, 149, 157, 163, 167, 171]},
-        {name: '山东', value: [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]},
-        {name: '湖北', value: [0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 11, 11, 12, 12, 12, 12, 14, 14, 14, 23, 23, 23, 23, 23, 23]},
-        {name: '福建', value: [0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]},
-        {name: '河北', value: [0, 0, 0, 6, 6, 18, 21, 27, 30, 39, 39, 47, 61, 70, 89, 98, 104, 125, 138, 138, 139, 148, 159, 173, 176]},
-        {name: '安徽', value: [0, 0, 0, 0, 1, 1, 1, 4, 4, 5, 7, 7, 9, 9, 9, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11]},
-        {name: '江苏', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 4, 4, 4, 4, 4, 4, 5, 5, 6, 7, 7, 7, 7]},
-        {name: '重庆', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3]}
-      ],
-      recoveryData: [
-        {name: '广东', value: [1004, 1136, 1137, 1146, 1159, 1173, 1178, 1185, 1191, 1201, 1201, 1206, 1208, 1233, 1237, 1245, 1251, 1256, 1273, 1288, 1305, 1314, 1319, 1322, 1327]},
-        {name: '山西', value: [4, 6, 13, 13, 14, 14, 14, 19, 20, 21, 22, 25, 32, 33, 36, 36, 41, 51, 54, 69, 81, 87, 95, 119, 142]},
-        {name: '北京', value: [1, 43, 46, 55, 64, 73, 76, 78, 78, 83, 90, 100, 109, 115, 118, 121, 134, 141, 152, 168, 175, 186, 203, 244, 252]},
-        {name: '广西', value: [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]},
-        {name: '湖南', value: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]},
-        {name: '四川', value: [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 6]},
-        {name: '上海', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-        {name: '内蒙', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 4, 4, 8, 8, 11, 11, 14, 16, 18, 19, 21, 21]},
-        {name: '河南', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 3, 3, 4, 5, 5, 5]},
-        {name: '宁夏', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 4]},
-        {name: '吉林', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1]},
-        {name: '浙江', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-        {name: '辽宁', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-        {name: '甘肃', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]},
-        {name: '陕西', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 3, 3, 4, 4]},
-        {name: '天津', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2]},
-        {name: '山东', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-        {name: '湖北', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2]},
-        {name: '福建', value: [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3]},
-        {name: '河北', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 5, 10, 10, 10, 12, 20, 21, 26]},
-        {name: '安徽', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]},
-        {name: '江苏', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-        {name: '重庆', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
-      ],
-      deadData: [
-      {name: '广东', value: [44, 48, 48, 49, 49, 50, 51, 51, 51, 51, 51, 51, 51, 51, 51, 54, 55, 55, 56, 56, 56, 56, 56, 56, 56]},
-      {name: '山西', value: [2, 7, 7, 7, 7, 8, 8, 9, 9, 9, 9, 10, 10, 12, 12, 14, 17, 17, 17, 17, 18, 18, 18, 19, 19]},
-      {name: '北京', value: [4, 25, 28, 35, 39, 42, 48, 56, 59, 66, 75, 82, 91, 96, 100, 103, 107, 110, 112, 114, 116, 120, 129, 134, 139]},
-      {name: '广西', value: [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]},
-      {name: '湖南', value: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]},
-      {name: '四川', value: [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]},
-      {name: '上海', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1]},
-      {name: '内蒙古', value: [0, 6, 6, 6, 6, 6, 6, 6, 7, 8, 9, 11, 13, 14, 14, 14, 14, 16, 16, 17, 17, 18, 20, 23, 23]},
-      {name: '河南', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-      {name: '宁夏', value: [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]},
-      {name: '吉林', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 3, 3, 4, 4, 4, 4, 4]},
-      {name: '浙江', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-      {name: '辽宁', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-      {name: '甘肃', value: [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]},
-      {name: '陕西', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-      {name: '天津', value: [0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 5, 6, 7, 7, 8, 9, 9]},
-      {name: '山东', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-      {name: '湖北', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2]},
-      {name: '福建', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-      {name: '河北', value: [0, 0, 0, 0, 0, 0, 0, 0, 3, 4, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6]},
-      {name: '安徽', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-      {name: '江苏', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-      {name: '重庆', value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
-      ],
+      covconfirmData:covconfirm,
+      covrecoveryData:covrecovery,
+      covdeadData:covdead,
+      sarsconfirmData:sarsconfirm,
+      sarsrecoveryData:sarsrecovery,
+      sarsdeadData:sarsdead,
       data1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       data2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       data3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]  
@@ -249,7 +185,7 @@ export default {
                 offset: 15,
                 animationDuration: 300,
                 animationDurationUpdate: 300,
-                data: ['广东', '山西', '北京', '广西', '湖南', '四川', '上海', '内蒙古', '河南', '宁夏', '吉林', '浙江', '辽宁', '甘肃', '陕西', '天津', '山东', '湖北', '福建', '河北', '安徽', '江苏', '重庆']
+                data: ['北京', '香港', '上海', '四川', '河北', '甘肃', '陕西', '辽宁', '广东', '台湾', '福建', '重庆', '浙江', '江苏', '天津', '云南', '澳门', '湖北', '河南', '湖南', '安徽', '黑龙江', '江西','山东','广西','内蒙古','山西','海南','吉林','贵州','新疆','宁夏','青海','西藏']
             },
             animationDuration: 0,
             animationDurationUpdate: 3000,
@@ -388,6 +324,7 @@ export default {
 
         this.chartLeft.setOption(this.optionLeft)
         this.chartRight.setOption(this.optionRight)
+        
     },
 
       run () {
@@ -399,18 +336,20 @@ export default {
         var dataconfirmRight = this.optionRight.series[0].data // 所有省当天的治疗人数
         var datarecoveryRight = this.optionRight.series[1].data // 所有省当天的康复人数
         var datadeadRight = this.optionRight.series[2].data // 所有省当天的死亡人数
-
         for (var i = 0; i < dataconfirmLeft.length; ++i) {
-            let pc = this.comfirmData[i].value // 该省所有天数的确诊数据
-            let pr = this.recoveryData[i].value
-            let pd = this.deadData[i].value
+            let pc = this.covconfirmData[i].value // 该省所有天数的确诊数据
+            let pr = this.covrecoveryData[i].value
+            let pd = this.covdeadData[i].value
+            let pcl = this.sarsconfirmData[i].value // 该省所有天数的确诊数据
+            let prl = this.sarsrecoveryData[i].value
+            let pdl = this.sarsdeadData[i].value
             dataconfirmRight[i] = pc[this.j] - pr[this.j] - pd[this.j]
             datarecoveryRight[i] = pr[this.j]
             datadeadRight[i] = pd[this.j]
 
-            dataconfirmLeft[i] = pc[this.j] - pr[this.j] - pd[this.j]
-            datarecoveryLeft[i] = pr[this.j]
-            datadeadLeft[i] = pd[this.j]
+            dataconfirmLeft[i] = pcl[this.j] - prl[this.j] - pdl[this.j]
+            datarecoveryLeft[i] = prl[this.j]
+            datadeadLeft[i] = pdl[this.j]
         }
 
         // 按dataconfirmLeft排序(左)
@@ -430,52 +369,52 @@ export default {
                     this.optionLeft.yAxis.data[i] = this.optionLeft.yAxis.data[k]
                     this.optionLeft.yAxis.data[k] = tmp
 
-                    tmp = this.comfirmData[i]
-                    this.comfirmData[i] = this.comfirmData[k]
-                    this.comfirmData[k] = tmp
+                    tmp = this.sarsconfirmData[i]
+                    this.sarsconfirmData[i] = this.sarsconfirmData[k]
+                    this.sarsconfirmData[k] = tmp
 
-                    tmp = this.recoveryData[i]
-                    this.recoveryData[i] = this.recoveryData[k]
-                    this.recoveryData[k] = tmp
+                    tmp = this.sarsrecoveryData[i]
+                    this.sarsrecoveryData[i] = this.sarsrecoveryData[k]
+                    this.sarsrecoveryData[k] = tmp
 
-                    tmp = this.deadData[i]
-                    this.deadData[i] = this.deadData[k]
-                    this.deadData[k] = tmp
+                    tmp = this.sarsdeadData[i]
+                    this.sarsdeadData[i] = this.sarsdeadData[k]
+                    this.sarsdeadData[k] = tmp
                 }
             }
         }
 
         // 按dataconfirmLeft排序(右)
-        // for (let i = 0; i < dataconfirmRight.length; i++) {
-        //     for (let k = i + 1; k < dataconfirmRight.length; k++) {
-        //         if (dataconfirmRight[i] < dataconfirmRight[k]) {
-        //             tmp = dataconfirmRight[i]
-        //             dataconfirmRight[i] = dataconfirmRight[k]
-        //             dataconfirmRight[k] = tmp
-        //             tmp = datarecoveryRight[i]
-        //             datarecoveryRight[i] = datarecoveryRight[k]
-        //             datarecoveryRight[k] = tmp
-        //             tmp = datadeadRight[i]
-        //             datadeadRight[i] = datadeadRight[k]
-        //             datadeadRight[k] = tmp
-        //             tmp = this.optionRight.yAxis.data[i]
-        //             this.optionRight.yAxis.data[i] = this.optionRight.yAxis.data[k]
-        //             this.optionRight.yAxis.data[k] = tmp
+        for (let i = 0; i < dataconfirmRight.length; i++) {
+            for (let k = i + 1; k < dataconfirmRight.length; k++) {
+                if (dataconfirmRight[i] < dataconfirmRight[k]) {
+                    tmp = dataconfirmRight[i]
+                    dataconfirmRight[i] = dataconfirmRight[k]
+                    dataconfirmRight[k] = tmp
+                    tmp = datarecoveryRight[i]
+                    datarecoveryRight[i] = datarecoveryRight[k]
+                    datarecoveryRight[k] = tmp
+                    tmp = datadeadRight[i]
+                    datadeadRight[i] = datadeadRight[k]
+                    datadeadRight[k] = tmp
+                    tmp = this.optionRight.yAxis.data[i]
+                    this.optionRight.yAxis.data[i] = this.optionRight.yAxis.data[k]
+                    this.optionRight.yAxis.data[k] = tmp
 
-        //             tmp = this.comfirmData[i]
-        //             this.comfirmData[i] = this.comfirmData[k]
-        //             this.comfirmData[k] = tmp
+                    tmp = this.covconfirmData[i]
+                    this.covconfirmData[i] = this.covconfirmData[k]
+                    this.covconfirmData[k] = tmp
 
-        //             tmp = this.recoveryData[i]
-        //             this.recoveryData[i] = this.recoveryData[k]
-        //             this.recoveryData[k] = tmp
+                    tmp = this.covrecoveryData[i]
+                    this.covrecoveryData[i] = this.covrecoveryData[k]
+                    this.covrecoveryData[k] = tmp
 
-        //             tmp = this.deadData[i]
-        //             this.deadData[i] = this.deadData[k]
-        //             this.deadData[k] = tmp
-        //         }
-        //     }
-        // }
+                    tmp = this.covdeadData[i]
+                    this.covdeadData[i] = this.covdeadData[k]
+                    this.covdeadData[k] = tmp
+                }
+            }
+        }
         // 更新连线数据
         for (let i = 0; i < 20; i++) {
             this.leftname[i] = this.optionLeft.yAxis.data[i]
@@ -529,7 +468,7 @@ export default {
         this.chartLeft.setOption(this.optionLeft)
         this.chartRight.setOption(this.optionRight)
         this.j = this.j + 1
-        if (this.j === 24) {
+        if (this.j === 51) {
             this.j = 0
         }
       }
