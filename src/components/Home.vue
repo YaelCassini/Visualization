@@ -1,14 +1,8 @@
 <template>
   <div class="Home">
-    <h2  style=" font-size: 16px;  color:#D8D8D8; padding: 106px 0px 0px 0px;">{{ subTitle }}</h2>
-    <h1 style="font-size: 48px; font-weight: bold; color:#0091FF; height:120px; padding: 20px 0px 0px 0px;">{{ title }}</h1>
-    <ul>
-      <li><a href="http://localhost:8080/#/" target="_blank">Home</a></li>
-      <li><a href="http://localhost:8080/#/ChinaMap" target="_blank">ChinaMap</a></li>
-      <li><a href="http://localhost:8080/#/Order" target="_blank">Order</a></li>
-      <li><a href="http://localhost:8080/#/Weibo" target="_blank">Weibo</a></li>
-    </ul>
-        <span id="button1" style="height: 50px;width: 200px;margin-left: 650px">
+    <h1 style="font-size: 48px; font-weight: bold; color:#0091FF; height:30px; padding: 0px 0px 0px 0px;">{{ title }}</h1>
+    <h2  style=" font-size: 16px;  color:#D8D8D8; padding: 5px 0px 0px 0px;">{{ subTitle }}</h2>
+        <span id="button1" style="height: 50px;width: 200px;margin-left: 800px">
         <el-radio-group v-model="radioButton" @change="change" size="medium" >
             <el-radio-button :label="true" >NEW</el-radio-button>
             <el-radio-button :label="false">TOTAL</el-radio-button>
@@ -16,7 +10,7 @@
         </span>
 
     <div style="margin: 0 auto; display: flex; flex-direction: row; justify-content: space-around;">
-    <div id="main" style="width: 1200px; height: 600px;"></div>
+    <div id="main" style="width: 1200px; height: 500px;"></div>
 
     </div>
 
@@ -32,7 +26,6 @@ export default {
   name: 'Home',
   data () {
     return {
-      msg: '这个界面是上下镜像对称的柱状图，展示每日新增和累计新增，死亡与重要政策发布节点',
       title:'ARE WE DOING BETTER?',
       subTitle: 'We compared the data of SARS 2003 with the ones of COVID-19 2020 and try to find something...',
       radioButton:true,
@@ -86,11 +79,11 @@ export default {
               textStyle: {
                 color: '#BCBBB9',
                 fontWeight: 'bolder',
-                fontSize: 37
+                fontSize: 35
             },
               text: 'Daily Cases',
-              left: 10,
-              padding:10,
+              left: 120,
+              padding:0,
           },
           grid: {
             top:40,
@@ -166,7 +159,7 @@ export default {
               position: 'right',
               inverse: true,
               min: 0,
-              max: 300,
+              max: 220,
               gridIndex: 1,
           },
           ],
