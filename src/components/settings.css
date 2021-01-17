@@ -1,0 +1,14 @@
+body
+{
+background-image:url('img_tree.png');
+background-repeat:no-repeat;
+background-position:right top;
+}
+h1
+{
+    font-size: 48px; 
+    font-weight: bold; 
+    color:#0091FF; 
+    height:120px; 
+    padding: 20px 0px 0px 0px;
+}
