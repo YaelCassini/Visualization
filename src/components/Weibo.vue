@@ -334,8 +334,14 @@ export default {
 
         },
         drawTopic() {
+            var tmp = JSON.parse(JSON.stringify(this.topicdata.data1));
+            for (var i = 0; i < this.topicdata.data1.length; i++) {
+                tmp[i] /= 30000;
+            }
             // 指定图表的配置项和数据
             this.option2 = {
+                // 这个color改的是图例的颜色（要跟后面series的颜色相同）
+                color:['#ff00ff','#00ff00','#ff0000','#ffff00','#00ffff'],
                 title: {
                     text: '每日话题热度分配',
                 },
@@ -343,7 +349,13 @@ export default {
                     trigger: 'axis',
                     formatter(params){
                         var res='<div><p>时间：'+params[0].name+'</p></div>' 
+                        
                         for(var i=0;i<params.length;i++){
+                            // if (i === 1){
+                            //     if (params[i].data != 0){
+                            //         res+='<p>'+params[i].marker+'微博事件热度：'+params[i].data+'</p>'
+                            //     }
+                            // }
                             if (i!=1){
                                 res+='<p>'+params[i].marker+params[i].seriesName+'：'+params[i].data+'</p>'
                             }
@@ -362,7 +374,6 @@ export default {
                     bottom: '3%',
                     containLabel: true
                 },
-
                 dataZoom:[
                     {
                     type:"inside",         //缩放
@@ -404,102 +415,104 @@ export default {
                     {
                         type: 'value',
                         min: 0,
-                        max: 3.5,
+                        max: 4,
                         show: false,
                     }
                 ],
-                // series: [
-                //     {
-                //         name: '全国累计确诊人数',
-                //         type: 'line',
-                //         data: this.topicdata.data1,
-                //     },
-                //     {
-                //         name: '话题比例',
-                //         type: 'bar',
-                //         stack: '话题',
-                //         itemStyle: {
-                //             barBorderColor: 'rgba(0,0,0,0)',
-                //             color: 'rgba(0,0,0,0)'
-                //         },
-                //         emphasis: {
-                //             itemStyle: {
-                //                 barBorderColor: 'rgba(0,0,0,0)',
-                //                 color: 'rgba(0,0,0,0)'
-                //             }
-                //         },
-                //         data: this.topicdata.data1,
-                //     },
-                //     {
-                //         name: '政治话题',
-                //         type: 'bar',
-                //         stack: '话题',
-                //         yAxisIndex: 1,
-                //         data: this.topicdata.data2,
-                //     },
-                //     {
-                //         name: '疫情话题',
-                //         type: 'bar',
-                //         stack: '话题',
-                //         yAxisIndex: 1,
-                //         data: this.topicdata.data3,
-                //     },
-                //     {
-                //         name: '文化娱乐话题',
-                //         type: 'bar',
-                //         stack: '话题',
-                //         yAxisIndex: 1,
-                //         data: this.topicdata.data4,
-                //     },
-                //     {
-                //         name: '社会新闻话题',
-                //         type: 'bar',
-                //         stack: '话题',
-                //         yAxisIndex: 1,
-                //         data: this.topicdata.data5,
-                //     },
-                //     {
-                //         name: '其他话题',
-                //         type: 'bar',
-                //         stack: '话题',
-                //         yAxisIndex: 1,
-                //         data: this.topicdata.data6,
-                //     }
-                // ]
                 series: [
                     {
                         name: '全国累计确诊人数',
                         type: 'line',
+                        yAxisIndex: 0,
+                        stack: '人数',
                         data: this.topicdata.data1,
+                        markLine : {
+							symbol:"none",               //去掉警戒线最后面的箭头
+                            lineStyle:{               //警戒线的样式  ，虚实  颜色
+                                    type:"solid",
+									color:"#FA3934",
+                            },
+                            silent:false, //鼠标悬停事件  true没有，false有
+                            data:[
+                                {
+                                    name:'事件1',
+                                    label:{
+                                        show:true,
+                                        position:"end",
+                                        formatter:"火神山医院"
+                                    },
+                                    xAxis:58
+                                },
+                                {
+                                    name:'事件2',
+                                    label:{
+                                        show:true,
+                                        position:"end",
+                                        formatter:"钟南山赴武汉"
+                                    },
+                                    xAxis:49
+                                },
+                                {
+                                    name:'事件3',
+                                    label:{
+                                        show:true,
+                                        position:"end",
+                                        formatter:"李文亮去世"
+                                    },
+                                    xAxis:68
+                                },
+                                {
+                                    name:'事件4',
+                                    label:{
+                                        show:true,
+                                        position:"end",
+                                        formatter:"美国 新冠"
+                                    },
+                                    xAxis:87
+                                },
+                                {
+                                    name:'事件5',
+                                    label:{
+                                        show:true,
+                                        position:"end",
+                                        formatter:"中国0新增"
+                                    },
+                                    xAxis:106
+                                },
+                                {
+                                    name:'事件5',
+                                    label:{
+                                        show:true,
+                                        position:"end",
+                                        formatter:"无症状感染者"
+                                    },
+                                    xAxis:119
+                                },
+                            ]
+                        }
                     },
+                    
                     {
-                        name: '话题比例',
+                        name: 'helper',
                         type: 'line',
+                        yAxisIndex: 1,
                         stack: '话题',
-                        smooth: true,
-                        areaStyle: {
-                            opacity: 0.8,
-                            color:'black'
-                        },
-                        itemStyle: {
-                            barBorderColor: 'rgba(0,0,0,0)',
-                            color: 'rgba(0,0,0,0)'
-                        },
-                        emphasis: {
-                            itemStyle: {
-                                barBorderColor: 'rgba(0,0,0,0)',
-                                color: 'rgba(0,0,0,0)'
-                            }
-                        },
-                        data: this.topicdata.data1,
+                        data: tmp,
                     },
                     {
                         name: '政治话题',
                         type: 'line',
                         smooth: true,
+                        lineStyle: {
+                            width: 0
+                        },
+                        showSymbol: false,
                         areaStyle: {
                             opacity: 0.3,
-                            color:'blue'
+                            color: 'rgba(255,0,255)'
+                        },
+                        emphasis: {
+                            focus: 'series'
                         },
                         stack: '话题',
                         yAxisIndex: 1,
@@ -510,9 +523,16 @@ export default {
                         type: 'line',
                         stack: '话题',
                         smooth: true,
+                        lineStyle: {
+                            width: 0
+                        },
+                        showSymbol: false,
                         areaStyle: {
                             opacity: 0.3,
-                            color:'gray'
+                            color: 'rgba(0,255,0)'
+                        },
+                        emphasis: {
+                            focus: 'series'
                         },
                         yAxisIndex: 1,
                         data: this.topicdata.data3,
@@ -522,9 +542,16 @@ export default {
                         type: 'line',
                         stack: '话题',
                         smooth: true,
+                        lineStyle: {
+                            width: 0
+                        },
+                        showSymbol: false,
                         areaStyle: {
                             opacity: 0.3,
-                            color:'green'
+                            color: 'red'
+                        },
+                        emphasis: {
+                            focus: 'series'
                         },
                         yAxisIndex: 1,
                         data: this.topicdata.data4,
@@ -534,9 +561,16 @@ export default {
                         type: 'line',
                         stack: '话题',
                         smooth: true,
+                        lineStyle: {
+                            width: 0
+                        },
+                        showSymbol: false,
                         areaStyle: {
                             opacity: 0.3,
-                            color:'yellow'
+                            color: 'rgba(255,255,0)'
+                        },
+                        emphasis: {
+                            focus: 'series'
                         },
                         yAxisIndex: 1,
                         data: this.topicdata.data5,
@@ -545,9 +579,16 @@ export default {
                         name: '其他话题',
                         type: 'line',
                         smooth: true,
+                        lineStyle: {
+                            width: 0
+                        },
+                        showSymbol: false,
                         areaStyle: {
                             opacity: 0.3,
-                            color:'red'
+                            color: 'rgba(0,255,255)'
+                        },
+                        emphasis: {
+                            focus: 'series'
                         },
                         stack: '话题',
                         yAxisIndex: 1,
