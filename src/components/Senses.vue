@@ -45,7 +45,7 @@ export default {
             }
             // 指定图表的配置项和数据
             this.option = {
-                // 这个color改的是图例的颜色（要跟后面series的颜色相同）
+                // 这个color改的是图例的颜色（要跟后面series的颜色相同），阿凉麻烦帮忙改下！
                 color:['#ff00ff','#00ff00','#ff0000','#ffff00','#00ffff'],
                 tooltip: {
                     trigger: 'axis',
@@ -63,7 +63,6 @@ export default {
                             }
                         }
                         return res;
-
                     }
                 },
                 legend: {
@@ -132,7 +131,7 @@ export default {
 							symbol:"none",               //去掉警戒线最后面的箭头
                             lineStyle:{               //警戒线的样式  ，虚实  颜色
                                     type:"solid",
-									color:"#FA3934",
+									color:"#FA3934", //阿凉改下警戒线颜色，蟹蟹！
                             },
                             silent:false, //鼠标悬停事件  true没有，false有
                             data:[
@@ -211,7 +210,7 @@ export default {
                         showSymbol: false,
                         areaStyle: {
                             opacity: 0.3,
-                            color: 'rgba(255,0,255)'
+                            color: 'rgba(255,0,255)' //阿凉帮忙改下颜色，蟹蟹！
                         },
                         emphasis: {
                             focus: 'series'
@@ -231,7 +230,7 @@ export default {
                         showSymbol: false,
                         areaStyle: {
                             opacity: 0.3,
-                            color: 'rgba(0,255,0)'
+                            color: 'rgba(0,255,0)' //阿凉帮忙改下颜色，蟹蟹！
                         },
                         emphasis: {
                             focus: 'series'
@@ -250,7 +249,7 @@ export default {
                         showSymbol: false,
                         areaStyle: {
                             opacity: 0.3,
-                            color: 'red'
+                            color: 'red' //阿凉帮忙改下颜色，蟹蟹！
                         },
                         emphasis: {
                             focus: 'series'
@@ -269,7 +268,7 @@ export default {
                         showSymbol: false,
                         areaStyle: {
                             opacity: 0.3,
-                            color: 'rgba(255,255,0)'
+                            color: 'rgba(255,255,0)'  //阿凉帮忙改下颜色，蟹蟹！
                         },
                         emphasis: {
                             focus: 'series'
@@ -287,7 +286,7 @@ export default {
                         showSymbol: false,
                         areaStyle: {
                             opacity: 0.3,
-                            color: 'rgba(0,255,255)'
+                            color: 'rgba(0,255,255)' //阿凉帮忙改下颜色，蟹蟹！
                         },
                         emphasis: {
                             focus: 'series'
@@ -308,7 +307,10 @@ export default {
 
 <style scoped>
 h1, h2 {
-  font-weight: normal;
-  color:black;
+  /* font-weight: normal;
+  color:black; */
+  color: #0091FF;
+  font-size:48;
+  font-weight:bolder;
 }
 </style>

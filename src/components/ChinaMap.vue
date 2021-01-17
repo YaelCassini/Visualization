@@ -1,9 +1,7 @@
 <template>
   <div class="ChinaMap">
-    <h1>{{ msg }}</h1>
-    <h2>作者：{{ author }}</h2>
     <div style="margin:0 50 0 50">
-        <div id="main" style="width:100%;height:1000px"></div>
+        <div id="main" style="width:100%;height:680px;margin:0 auto;"></div>
     </div>
   </div>
 </template>
@@ -27,9 +25,13 @@ import 'echarts/lib/component/tooltip';
 // 地图geo
 import 'echarts/lib/component/geo';
 
-import confirmdatajson from '../data/confirmData2.json'
-import recoverydatajson from '../data/recoveryData2.json'
-import deaddatajson from '../data/deadData2.json'
+
+import confirmdatajson1 from '../data/confirmData1.json'
+import recoverydatajson1 from '../data/recoveryData1.json'
+import deaddatajson1 from '../data/deadData1.json'
+import confirmdatajson2 from '../data/confirmData2.json'
+import recoverydatajson2 from '../data/recoveryData2.json'
+import deaddatajson2 from '../data/deadData2.json'
 
 
 export default {
@@ -74,86 +76,76 @@ export default {
                 '安徽':[117.27,31.86],
                 '江苏':[118.78,32.04]
             },
-            // confirmData: [
-            //     {name: '广东', value: [0,1213, 1317, 1330, 1344, 1359, 1374, 1379, 1382, 1395, 1399, 1405, 1412, 1421, 1432, 1441, 1453, 1465, 1478, 1485, 1502, 1504, 1506, 1509, 1509, 1510]},
-            //     {name: '山西', value: [0,32, 120, 141, 157, 162, 173, 195, 214, 243, 266, 300, 308, 312, 330, 341, 362, 373, 382, 395, 406, 417, 423, 427, 440, 444]},
-            //     {name: '北京', value: [0,22, 482, 558, 693, 774, 877, 990, 1116, 1212, 1363, 1464, 1586, 1682, 1796, 1829, 1927, 1997, 2094, 2188, 2236, 2290, 2332, 2380, 2428, 2467]},
-            //     {name: '广西', value: [0,12, 14, 14, 15, 16, 16, 16, 16, 16, 17, 18, 18, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21]},
-            //     {name: '湖南', value: [0,6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6]},
-            //     {name: '四川', value: [0,4, 8, 8, 8, 8, 9, 10, 12, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 15, 15, 15, 15, 16, 17]},
-            //     {name: '上海', value: [0,1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 6, 6, 6, 6, 7, 7, 7, 7, 7]},
-            //     {name: '内蒙', value: [0,0, 30, 33, 36, 47, 70, 74, 76, 114, 121, 128, 155, 181, 191, 226, 232, 253, 260, 269, 289, 295, 295, 296, 296, 296]},
-            //     {name: '河南', value: [0,0, 3, 6, 6, 8, 9, 10, 10, 11, 12, 12, 13, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15]},
-            //     {name: '宁夏', value: [0,0, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6]},
-            //     {name: '吉林', value: [0,0, 3, 7, 7, 7, 7, 7, 7, 7, 7, 7, 9, 14, 14, 18, 21, 23, 25, 26, 26, 26, 26, 27, 27, 30]},
-            //     {name: '浙江', value: [0,0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4]},
-            //     {name: '辽宁', value: [0,0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3]},
-            //     {name: '甘肃', value: [0,0, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 5, 5, 6, 6, 6, 7, 7, 8, 8, 8, 8]},
-            //     {name: '陕西', value: [0,0, 1, 2, 2, 2, 2, 5, 5, 5, 8, 8, 8, 9, 9, 9, 10, 10, 10, 11, 12, 12, 12, 12, 12, 12]},
-            //     {name: '天津', value: [0,0, 0, 5, 7, 8, 21, 22, 22, 43, 44, 49, 61, 73, 91, 100, 109, 120, 127, 132, 141, 149, 157, 163, 167, 171]},
-            //     {name: '山东', value: [0,0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]},
-            //     {name: '湖北', value: [0,0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 11, 11, 12, 12, 12, 12, 14, 14, 14, 23, 23, 23, 23, 23, 23]},
-            //     {name: '福建', value: [0,0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]},
-            //     {name: '河北', value: [0,0, 0, 0, 6, 6, 18, 21, 27, 30, 39, 39, 47, 61, 70, 89, 98, 104, 125, 138, 138, 139, 148, 159, 173, 176]},
-            //     {name: '安徽', value: [0,0, 0, 0, 0, 1, 1, 1, 4, 4, 5, 7, 7, 9, 9, 9, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11]},
-            //     {name: '江苏', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 4, 4, 4, 4, 4, 4, 5, 5, 6, 7, 7, 7, 7]},
-            //     {name: '重庆', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3]}
-            // ],
-            // recoveryData: [
-            //     {name: '广东', value: [0,1004, 1136, 1137, 1146, 1159, 1173, 1178, 1185, 1191, 1201, 1201, 1206, 1208, 1233, 1237, 1245, 1251, 1256, 1273, 1288, 1305, 1314, 1319, 1322, 1327]},
-            //     {name: '山西', value: [0,4, 6, 13, 13, 14, 14, 14, 19, 20, 21, 22, 25, 32, 33, 36, 36, 41, 51, 54, 69, 81, 87, 95, 119, 142]},
-            //     {name: '北京', value: [0,1, 43, 46, 55, 64, 73, 76, 78, 78, 83, 90, 100, 109, 115, 118, 121, 134, 141, 152, 168, 175, 186, 203, 244, 252]},
-            //     {name: '广西', value: [0,8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]},
-            //     {name: '湖南', value: [0,5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]},
-            //     {name: '四川', value: [0,3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 6]},
-            //     {name: '上海', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-            //     {name: '内蒙', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 4, 4, 8, 8, 11, 11, 14, 16, 18, 19, 21, 21]},
-            //     {name: '河南', value: [0,0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 3, 3, 4, 5, 5, 5]},
-            //     {name: '宁夏', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 4]},
-            //     {name: '吉林', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1]},
-            //     {name: '浙江', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-            //     {name: '辽宁', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-            //     {name: '甘肃', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]},
-            //     {name: '陕西', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 3, 3, 4, 4]},
-            //     {name: '天津', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2]},
-            //     {name: '山东', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-            //     {name: '湖北', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2]},
-            //     {name: '福建', value: [0,0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3]},
-            //     {name: '河北', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 5, 10, 10, 10, 12, 20, 21, 26]},
-            //     {name: '安徽', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]},
-            //     {name: '江苏', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-            //     {name: '重庆', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
-            // ],
-            // deadData: [
-            //     {name: '广东', value: [0,44, 48, 48, 49, 49, 50, 51, 51, 51, 51, 51, 51, 51, 51, 51, 54, 55, 55, 56, 56, 56, 56, 56, 56, 56]},
-            //     {name: '山西', value: [0,2, 7, 7, 7, 7, 8, 8, 9, 9, 9, 9, 10, 10, 12, 12, 14, 17, 17, 17, 17, 18, 18, 18, 19, 19]},
-            //     {name: '北京', value: [0,4, 25, 28, 35, 39, 42, 48, 56, 59, 66, 75, 82, 91, 96, 100, 103, 107, 110, 112, 114, 116, 120, 129, 134, 139]},
-            //     {name: '广西', value: [0,3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]},
-            //     {name: '湖南', value: [0,1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]},
-            //     {name: '四川', value: [0,1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]},
-            //     {name: '上海', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1]},
-            //     {name: '内蒙古', value: [0,0, 6, 6, 6, 6, 6, 6, 6, 7, 8, 9, 11, 13, 14, 14, 14, 14, 16, 16, 17, 17, 18, 20, 23, 23]},
-            //     {name: '河南', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-            //     {name: '宁夏', value: [0,0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]},
-            //     {name: '吉林', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 3, 3, 4, 4, 4, 4, 4]},
-            //     {name: '浙江', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-            //     {name: '辽宁', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-            //     {name: '甘肃', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]},
-            //     {name: '陕西', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-            //     {name: '天津', value: [0,0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 5, 6, 7, 7, 8, 9, 9]},
-            //     {name: '山东', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-            //     {name: '湖北', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2]},
-            //     {name: '福建', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-            //     {name: '河北', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 3, 4, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6]},
-            //     {name: '安徽', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-            //     {name: '江苏', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
-            //     {name: '重庆', value: [0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}
-            // ],
-            confirmData: confirmdatajson,
-            recoveryData: recoverydatajson,
-            deadData: deaddatajson,
+            confirmData1: confirmdatajson1,
+            recoveryData1: recoverydatajson1,
+            deadData1: deaddatajson1,
 
-            originToday: [
+            confirmData2: confirmdatajson2,
+            recoveryData2: recoverydatajson2,
+            deadData2: deaddatajson2,
+
+            // originToday: [
+            //     {name: '广东', value: 0},
+            //     {name: '山西', value: 0},
+            //     {name: '北京', value: 0},
+            //     {name: '广西', value: 0},
+            //     {name: '湖南', value: 0},
+            //     {name: '四川', value: 0},
+            //     {name: '上海', value: 0},
+            //     {name: '内蒙古', value: 0},
+            //     {name: '河南', value: 0},
+            //     {name: '宁夏', value: 0},
+            //     {name: '吉林', value: 0},
+            //     {name: '浙江', value: 0},
+            //     {name: '辽宁', value: 0},
+            //     {name: '甘肃', value: 0},
+            //     {name: '陕西', value: 0},
+            //     {name: '天津', value: 0},
+            //     {name: '山东', value: 0},
+            //     {name: '湖北', value: 0},
+            //     {name: '福建', value: 0},
+            //     {name: '河北', value: 0},
+            //     {name: '安徽', value: 0},
+            //     {name: '江苏', value: 0},
+            //     {name: '重庆', value: 0}
+            // ],  
+            confirmToday1: [
+                {name: '北京', value: 0},
+                {name: '香港', value: 0},
+                {name: '上海', value: 0},
+                {name: '四川', value: 0},
+                {name: '河北', value: 0},
+                {name: '甘肃', value: 0},
+                {name: '陕西', value: 0},
+                {name: '辽宁', value: 0},
+                {name: '广东', value: 0},
+                {name: '台湾', value: 0},
+                {name: '福建', value: 0},
+                {name: '重庆', value: 0},
+                {name: '浙江', value: 0},
+                {name: '江苏', value: 0},
+                {name: '天津', value: 0},
+                {name: '云南', value: 0},
+                {name: '澳门', value: 0},
+                {name: '湖北', value: 0},
+                {name: '河南', value: 0},
+                {name: '湖南', value: 0},
+                {name: '安徽', value: 0},
+                {name: '黑龙江', value: 0},
+                {name: '江西', value: 0},
+                {name: '山东', value: 0},
+                {name: '广西', value: 0},
+                {name: '内蒙古', value: 0},
+                {name: '山西', value: 0},
+                {name: '海南', value: 0},
+                {name: '吉林', value: 0},
+                {name: '贵州', value: 0},
+                {name: '新疆维吾尔', value: 0},
+                {name: '宁夏回族', value: 0},
+                {name: '青海', value: 0},
+                {name: '西藏', value: 0}
+            ],    
+            confirmToday2: [
                 {name: '广东', value: 0},
                 {name: '山西', value: 0},
                 {name: '北京', value: 0},
@@ -176,84 +168,164 @@ export default {
                 {name: '河北', value: 0},
                 {name: '安徽', value: 0},
                 {name: '江苏', value: 0},
-                {name: '重庆', value: 0}
+                {name: '重庆', value: 0},
+                {name: '江西', value: 0},
+                {name: "黑龙江", value: 0},
+                {name: "新疆", value: 0},
+                {name: "西藏", value: 0},
+                {name: "青海", value: 0},
+                {name: "云南", value: 0},
+                {name: "贵州", value: 0},
+                {name: "台湾", value: 0},
+                {name: "海南", value: 0},
+                {name: "香港", value: 0},
+                {name: "澳门", value: 0}
             ],
-            
-            confirmToday: [
-                {name: '广东', value: 0},
-                {name: '山西', value: 0},
-                {name: '北京', value: 0},
-                {name: '广西', value: 0},
-                {name: '湖南', value: 0},
-                {name: '四川', value: 0},
-                {name: '上海', value: 0},
-                {name: '内蒙古', value: 0},
-                {name: '河南', value: 0},
-                {name: '宁夏', value: 0},
-                {name: '吉林', value: 0},
-                {name: '浙江', value: 0},
-                {name: '辽宁', value: 0},
-                {name: '甘肃', value: 0},
-                {name: '陕西', value: 0},
-                {name: '天津', value: 0},
-                {name: '山东', value: 0},
-                {name: '湖北', value: 0},
-                {name: '福建', value: 0},
-                {name: '河北', value: 0},
-                {name: '安徽', value: 0},
-                {name: '江苏', value: 0},
-                {name: '重庆', value: 0}
+            // recoveryToday: [
+            //     {name: '广东', value: 0},
+            //     {name: '山西', value: 0},
+            //     {name: '北京', value: 0},
+            //     {name: '广西', value: 0},
+            //     {name: '湖南', value: 0},
+            //     {name: '四川', value: 0},
+            //     {name: '上海', value: 0},
+            //     {name: '内蒙古', value: 0},
+            //     {name: '河南', value: 0},
+            //     {name: '宁夏', value: 0},
+            //     {name: '吉林', value: 0},
+            //     {name: '浙江', value: 0},
+            //     {name: '辽宁', value: 0},
+            //     {name: '甘肃', value: 0},
+            //     {name: '陕西', value: 0},
+            //     {name: '天津', value: 0},
+            //     {name: '山东', value: 0},
+            //     {name: '湖北', value: 0},
+            //     {name: '福建', value: 0},
+            //     {name: '河北', value: 0},
+            //     {name: '安徽', value: 0},
+            //     {name: '江苏', value: 0},
+            //     {name: '重庆', value: 0},
+            //     {name: '江西', value: 0},
+            //     {name: "黑龙江", value: 0},
+            //     {name: "新疆", value: 0},
+            //     {name: "西藏", value: 0},
+            //     {name: "青海", value: 0},
+            //     {name: "云南", value: 0},
+            //     {name: "贵州", value: 0},
+            //     {name: "台湾", value: 0},
+            //     {name: "海南", value: 0},
+            //     {name: "香港", value: 0},
+            //     {name: "澳门", value: 0}
+            // ],
+            // deadToday: [
+            //     {name: '广东', value: 0},
+            //     {name: '山西', value: 0},
+            //     {name: '北京', value: 0},
+            //     {name: '广西', value: 0},
+            //     {name: '湖南', value: 0},
+            //     {name: '四川', value: 0},
+            //     {name: '上海', value: 0},
+            //     {name: '内蒙古', value: 0},
+            //     {name: '河南', value: 0},
+            //     {name: '宁夏', value: 0},
+            //     {name: '吉林', value: 0},
+            //     {name: '浙江', value: 0},
+            //     {name: '辽宁', value: 0},
+            //     {name: '甘肃', value: 0},
+            //     {name: '陕西', value: 0},
+            //     {name: '天津', value: 0},
+            //     {name: '山东', value: 0},
+            //     {name: '湖北', value: 0},
+            //     {name: '福建', value: 0},
+            //     {name: '河北', value: 0},
+            //     {name: '安徽', value: 0},
+            //     {name: '江苏', value: 0},
+            //     {name: '重庆', value: 0},
+            //     {name: '江西', value: 0},
+            //     {name: "黑龙江", value: 0},
+            //     {name: "新疆", value: 0},
+            //     {name: "西藏", value: 0},
+            //     {name: "青海", value: 0},
+            //     {name: "云南", value: 0},
+            //     {name: "贵州", value: 0},
+            //     {name: "台湾", value: 0},
+            //     {name: "海南", value: 0},
+            //     {name: "香港", value: 0},
+            //     {name: "澳门", value: 0}
+            // ],
+            dataToday1: [
+                {name: '北京', confirm: 0, recovery: 0, dead: 0},
+                {name: '香港', confirm: 0, recovery: 0, dead: 0},
+                {name: '上海', confirm: 0, recovery: 0, dead: 0},
+                {name: '四川', confirm: 0, recovery: 0, dead: 0},
+                {name: '河北', confirm: 0, recovery: 0, dead: 0},
+                {name: '甘肃', confirm: 0, recovery: 0, dead: 0},
+                {name: '陕西', confirm: 0, recovery: 0, dead: 0},
+                {name: '辽宁', confirm: 0, recovery: 0, dead: 0},
+                {name: '广东', confirm: 0, recovery: 0, dead: 0},
+                {name: '台湾', confirm: 0, recovery: 0, dead: 0},
+                {name: '福建', confirm: 0, recovery: 0, dead: 0},
+                {name: '重庆', confirm: 0, recovery: 0, dead: 0},
+                {name: '浙江', confirm: 0, recovery: 0, dead: 0},
+                {name: '江苏', confirm: 0, recovery: 0, dead: 0},
+                {name: '天津', confirm: 0, recovery: 0, dead: 0},
+                {name: '云南', confirm: 0, recovery: 0, dead: 0},
+                {name: '澳门', confirm: 0, recovery: 0, dead: 0},
+                {name: '湖北', confirm: 0, recovery: 0, dead: 0},
+                {name: '河南', confirm: 0, recovery: 0, dead: 0},
+                {name: '湖南', confirm: 0, recovery: 0, dead: 0},
+                {name: '安徽', confirm: 0, recovery: 0, dead: 0},
+                {name: '黑龙江', confirm: 0, recovery: 0, dead: 0},
+                {name: '江西', confirm: 0, recovery: 0, dead: 0},
+                {name: '山东', confirm: 0, recovery: 0, dead: 0},
+                {name: '广西', confirm: 0, recovery: 0, dead: 0},
+                {name: '内蒙古', confirm: 0, recovery: 0, dead: 0},
+                {name: '山西', confirm: 0, recovery: 0, dead: 0},
+                {name: '海南', confirm: 0, recovery: 0, dead: 0},
+                {name: '吉林', confirm: 0, recovery: 0, dead: 0},
+                {name: '贵州', confirm: 0, recovery: 0, dead: 0},
+                {name: '新疆维吾尔', confirm: 0, recovery: 0, dead: 0},
+                {name: '宁夏回族', confirm: 0, recovery: 0, dead: 0},
+                {name: '青海', confirm: 0, recovery: 0, dead: 0},
+                {name: '西藏', confirm: 0, recovery: 0, dead: 0}
             ],
-            recoveryToday: [
-                {name: '广东', value: 0},
-                {name: '山西', value: 0},
-                {name: '北京', value: 0},
-                {name: '广西', value: 0},
-                {name: '湖南', value: 0},
-                {name: '四川', value: 0},
-                {name: '上海', value: 0},
-                {name: '内蒙古', value: 0},
-                {name: '河南', value: 0},
-                {name: '宁夏', value: 0},
-                {name: '吉林', value: 0},
-                {name: '浙江', value: 0},
-                {name: '辽宁', value: 0},
-                {name: '甘肃', value: 0},
-                {name: '陕西', value: 0},
-                {name: '天津', value: 0},
-                {name: '山东', value: 0},
-                {name: '湖北', value: 0},
-                {name: '福建', value: 0},
-                {name: '河北', value: 0},
-                {name: '安徽', value: 0},
-                {name: '江苏', value: 0},
-                {name: '重庆', value: 0}
-            ],
-            deadToday: [
-                {name: '广东', value: 0},
-                {name: '山西', value: 0},
-                {name: '北京', value: 0},
-                {name: '广西', value: 0},
-                {name: '湖南', value: 0},
-                {name: '四川', value: 0},
-                {name: '上海', value: 0},
-                {name: '内蒙古', value: 0},
-                {name: '河南', value: 0},
-                {name: '宁夏', value: 0},
-                {name: '吉林', value: 0},
-                {name: '浙江', value: 0},
-                {name: '辽宁', value: 0},
-                {name: '甘肃', value: 0},
-                {name: '陕西', value: 0},
-                {name: '天津', value: 0},
-                {name: '山东', value: 0},
-                {name: '湖北', value: 0},
-                {name: '福建', value: 0},
-                {name: '河北', value: 0},
-                {name: '安徽', value: 0},
-                {name: '江苏', value: 0},
-                {name: '重庆', value: 0}
+            dataToday2: [
+                {name: '广东', confirm: 0, recovery: 0, dead: 0},
+                {name: '山西', confirm: 0, recovery: 0, dead: 0},
+                {name: '北京', confirm: 0, recovery: 0, dead: 0},
+                {name: '广西', confirm: 0, recovery: 0, dead: 0},
+                {name: '湖南', confirm: 0, recovery: 0, dead: 0},
+                {name: '四川', confirm: 0, recovery: 0, dead: 0},
+                {name: '上海', confirm: 0, recovery: 0, dead: 0},
+                {name: '内蒙古', confirm: 0, recovery: 0, dead: 0},
+                {name: '河南', confirm: 0, recovery: 0, dead: 0},
+                {name: '宁夏', confirm: 0, recovery: 0, dead: 0},
+                {name: '吉林', confirm: 0, recovery: 0, dead: 0},
+                {name: '浙江', confirm: 0, recovery: 0, dead: 0},
+                {name: '辽宁', confirm: 0, recovery: 0, dead: 0},
+                {name: '甘肃', confirm: 0, recovery: 0, dead: 0},
+                {name: '陕西', confirm: 0, recovery: 0, dead: 0},
+                {name: '天津', confirm: 0, recovery: 0, dead: 0},
+                {name: '山东', confirm: 0, recovery: 0, dead: 0},
+                {name: '湖北', confirm: 0, recovery: 0, dead: 0},
+                {name: '福建', confirm: 0, recovery: 0, dead: 0},
+                {name: '河北', confirm: 0, recovery: 0, dead: 0},
+                {name: '安徽', confirm: 0, recovery: 0, dead: 0},
+                {name: '江苏', confirm: 0, recovery: 0, dead: 0},
+                {name: '重庆', confirm: 0, recovery: 0, dead: 0},
+                {name: '江西', confirm: 0, recovery: 0, dead: 0},
+                {name: "黑龙江", confirm: 0, recovery: 0, dead: 0},
+                {name: "新疆", confirm: 0, recovery: 0, dead: 0},
+                {name: "西藏", confirm: 0, recovery: 0, dead: 0},
+                {name: "青海", confirm: 0, recovery: 0, dead: 0},
+                {name: "云南", confirm: 0, recovery: 0, dead: 0},
+                {name: "贵州", confirm: 0, recovery: 0, dead: 0},
+                {name: "台湾", confirm: 0, recovery: 0, dead: 0},
+                {name: "海南", confirm: 0, recovery: 0, dead: 0},
+                {name: "香港", confirm: 0, recovery: 0, dead: 0},
+                {name: "澳门", confirm: 0, recovery: 0, dead: 0}
             ]
+            
             }        
     },
     mounted() {
@@ -261,7 +333,7 @@ export default {
         _this.init()
         _this.drawMap()
         setTimeout(function () { _this.run() }, 0)
-        setInterval(function () { _this.run() }, 3000)
+        setInterval(function () { _this.run() }, 5000)
     },
     methods:{
         init () {
@@ -269,7 +341,7 @@ export default {
         },
 
         drawMap() {
-            console.log(echarts.version);
+            // console.log(echarts.version);
             // 根据data获取不同省份对应的地理信息
             const geoCoordMap = this.geoCoordMap;
             var convertData = function (data) {
@@ -277,24 +349,18 @@ export default {
                 for (var i = 0; i < data.length; i++) {
                     var geoCoord = geoCoordMap[data[i].name];
                     if (geoCoord) {
+                        var temp = geoCoord.concat(data[i].confirm);
+                        var temp1 = temp.concat(data[i].recovery);
+                        var temp2 = temp1.concat(data[i].dead);
                         res.push({
                             name: data[i].name,
-                            value: geoCoord.concat(data[i].value)
+                            value: temp2
                         });
                     }
                 }
-                // console.log(res);
                 return res;
             };
 
-            // const state = {
-            //     geoCoordMap: {'香港特别行政区': [114.08, 22.2], '澳门特别行政区': [113.33, 22.13], '台北': [121.5, 25.03]/*等等*/},
-            //     // 发光的城市
-            //     showCityNumber: 5,
-            //     showCount: 0,
-            //     // 是否需要loading
-            //     isLoading: true
-            // }
         
             this.option = {
                 // 地理坐标系组件
@@ -311,19 +377,20 @@ export default {
                     itemStyle: {
                         // 地图背景色
                         normal: {
-                            areaColor: '#465471',
+                            areaColor: '#FF0000',
                             borderColor: '#FFD562',
-                            opacity:0.5,
+                            opacity:0,
                         },
                         // 悬浮时
                         emphasis: {
-                            opacity:1
-                            //areaColor: '#8796B4'
+                            opacity:1,
+                            areaColor: '#000000'
                         }
                     },
                 },
                 backgroundColor: '#FCFAF7',
                 title: {
+                    padding:30,
                     text: '疫情地理信息',
                     subtext: '中国地图',
                     left: 'center',
@@ -333,36 +400,42 @@ export default {
                         fontWeight:'bolder',
                     }
                 },
+                
                 tooltip: {
                     trigger: 'item',
-                    formatter: '{b}'+' : '+'{c} ',
-                    // formatter: function (params) {
-                    //     return params.name + ' : ' + params.value[2]
-                    // }
+                    formatter(params){
+                        // console.log(params);
+                        var res = ''
+                        // console.log(params.value);
+                        res +='城市：';
+                        res +=params.name;
+                        res +='<br>';
+                        res +='新增确诊人数：';
+                        res +=params.value[2];
+                        res +='<br>';
+                        res +='新增治愈人数：';
+                        res +=params.value[3];
+                        res +='<br>';
+                        res +='新增人数：';
+                        res +=params.value[4];
+                        res +='<br>';
+                        
+                        return res;
+                    },
+                    zlevel:0
                 },
                 legend: {
                     orient: 'vertical',
                     left: 'left',
                     top: 'top',
-                    data: ['确诊', '治愈','死亡', 'top5'],
+                    data: ['新冠','非典'],
                     textStyle: {
                         color: '#000'
                     }
                 },
-                toolbox: {
-                    show: true,
-                    orient: 'vertical',
-                    left: 'right',
-                    top: 'center'
-                    // feature: {
-                    //     dataView: {readOnly: false},
-                    //     restore: {},
-                    //     saveAsImage: {}
-                    // }
-                },
                 visualMap: [
                     {
-                    max: 1000,
+                    max: 50,
                     min: 0,
                     text: ['高', '低'],
                     realtime: false,
@@ -370,46 +443,30 @@ export default {
                     itemHeight: '200',
                     inverse: false, // 翻转
                     orient: 'horizontal',
-                    // inRange: {
-                    //     color: ['#DDDDDD', '#026FDD']
-                    // },
+                    inRange: {
+                        // 改颜色
+                        // 地图颜色深度
+                        color: ['#FFFF00', '#026FDD']
+                    },
+                    // 透明度
                     opacity:0.3,
+                    seriesIndex: 2,
                 }],
                 series: [
                     {
-                        name: '确诊',
+                        name: '新冠',
                         // 表的类型 这里是散点
                         type: 'effectScatter',
                         // 使用地理坐标系，通过 geoIndex 指定相应的地理坐标系组件
                         coordinateSystem: 'geo',
                         // data: [],
-                        data: convertData(this.confirmToday),
+                        data: convertData(this.dataToday1),
                         symbolSize: function (val) {
-                            console.log(Math.log(val[2])/Math.log(2) + 1);
-                            // return 10*Math.log(val[2])/Math.log(2) + 1;
-                            return val[2]/10;
+                            return 10*Math.log(val[2]+1)/Math.log(2) + 10;
                         },
                         opacity:0.3,
-                        tooltip: {
-                            trigger: 'item',
-                            // formatter: '{c}',
-                            formatter: function (params) {
-                                return params.name + ' : ' + params.value[2]
-                            }
-                        },
-                        visualMap:false,
-                        // showEffectOn: 'render',
                         showEffectOn: 'emphasis',
                         hoverAnimation: true,
-                        // 鼠标悬浮的时候在圆点上显示数值
-                        label: {
-                            normal: {
-                                show: false
-                            },
-                            emphasis: {
-                                show: false
-                            }
-                        },
                         label: {
                             formatter: '{b}',
                             position: 'right',
@@ -422,38 +479,35 @@ export default {
                         },
                         itemStyle: {
                             normal: {
-                                color: '#DDDDDD',
-                                opacity:0.4
+                                // 改颜色
+                                // 新冠散点颜色及透明度
+                                color: '#FFFFFF',
+                                opacity: 1
                             },
                             // 鼠标悬浮的时候圆点样式变化
                             emphasis: {
-                                borderColor: '#fff',
+                                // 改颜色
+                                // 新冠散点外边界颜色及透明度
+                                borderColor: '#000000',
                                 borderWidth: 1
                             }
                         },
-                        animationDuration: 300,
-                        animationDurationUpdate: 300,
                         zlevel:1
                     },
                     {
-                        name: '治愈',
+                        name: '非典',
                         // 表的类型 这里是散点
-                        type: 'scatter',
+                        type: 'effectScatter',
                         // 使用地理坐标系，通过 geoIndex 指定相应的地理坐标系组件
                         coordinateSystem: 'geo',
                         // data: [],
-                        data: convertData(this.recoveryToday),
+                        data: convertData(this.dataToday2),
                         symbolSize: function (val) {
-                            return Math.log(val[2])/Math.log(2) + 1;
+                            return 10*Math.log(val[2]+1)/Math.log(2) + 10;
                         },
-                        tooltip: {
-                            trigger: 'item',
-                            // formatter: '{c}',
-                            formatter: function (params) {
-                                return params.name + ' : ' + params.value[2]
-                            }
-                        },
-                        visualMap:false,
+                        opacity:0.3,
+                        showEffectOn: 'emphasis',
+                        hoverAnimation: true,
                         label: {
                             formatter: '{b}',
                             position: 'right',
@@ -466,143 +520,136 @@ export default {
                         },
                         itemStyle: {
                             normal: {
-                                color: '#026FDD',
-                                opacity:0.4
+                                // 改颜色
+                                // 非典散点颜色及透明度
+                                color: '#000000',
+                                opacity: 1
                             },
                             // 鼠标悬浮的时候圆点样式变化
                             emphasis: {
-                                borderColor: '#fff',
-                                borderWidth: 1,
-                                opacity:1
-                            }
-                        },
-                        animationDuration: 300,
-                        animationDurationUpdate: 300,
-                        zlevel:2
-                    },
-                    {
-                        name: '死亡',
-                        // 表的类型 这里是散点
-                        type: 'scatter',
-                        // 使用地理坐标系，通过 geoIndex 指定相应的地理坐标系组件
-                        coordinateSystem: 'geo',
-                        // data: [],
-                        data: convertData(this.deadToday),
-                        symbolSize: function (val) {
-                            return Math.log(val[2])/Math.log(2) + 1;
-                        },
-                        tooltip: {
-                            trigger: 'item',
-                            // formatter: '{c}',
-                            formatter: function (params) {
-                                return params.name + ' : ' + params.value[2]
-                            }
-                        },
-                        visualMap:false,
-                        label: {
-                            formatter: '{b}',
-                            position: 'right',
-                            show: false
-                        },
-                        emphasis: {
-                            label: {
-                                show: true
-                            }
-                        },
-                        itemStyle: {
-                            normal: {
-                                color: '#FF0000',
-                                opacity:0.4
-                            },
-                            // 鼠标悬浮的时候圆点样式变化
-                            emphasis: {
-                                borderColor: '#fff',
+                                // 改颜色
+                                // 非典散点边界颜色及透明度
+                                borderColor: '#FFFFFF',
                                 borderWidth: 1
                             }
                         },
-                        animationDuration: 300,
-                        animationDurationUpdate: 300,
-                        zlevel:3
-
-                        
+                        zlevel:1
                     },
                     // {
-                    //     name: 'top5',
+                    //     name: '治愈',
                     //     // 表的类型 这里是散点
-                    //     type: 'effectScatter',
+                    //     type: 'scatter',
                     //     // 使用地理坐标系，通过 geoIndex 指定相应的地理坐标系组件
                     //     coordinateSystem: 'geo',
                     //     // data: [],
-                    //     data: convertData(this.confirmToday.sort(function (a, b) {
-                    //         return b.value - a.value;
-                    //     }).slice(0, 6)),
+                    //     data: convertData(this.recoveryToday),
                     //     symbolSize: function (val) {
-                    //         return val[2] / 10;
+                    //         return 10*Math.log(val[2]+1)/Math.log(2) + 10;
                     //     },
-                    //     encode: {
-                    //         value: 2
+                    //     tooltip: {
+                    //         // trigger: 'item',
+                    //         // // formatter: '{c}',
+                    //         // formatter: function (params) {
+                    //         //     return params.name + ' : ' + params.value[2]
+                    //         // }
                     //     },
-                    //     // 标记的大小
-                    //     showEffectOn: 'render',
-                    //     rippleEffect: {
-                    //         brushType: 'stroke'
-                    //     },
-                    //     hoverAnimation: true,
+                    //     visualMap:false,
                     //     label: {
-                    //         normal: {
-                    //             show: false
-                    //         },
-                    //         emphasis: {
-                    //             formatter: '{@[3]}',
+                    //         formatter: '{b}',
+                    //         position: 'right',
+                    //         show: false
+                    //     },
+                    //     emphasis: {
+                    //         label: {
+                    //             show: true
                     //         }
                     //     },
                     //     itemStyle: {
                     //         normal: {
-                    //             color: '#ff0000',
-                    //             shadowBlur: 10,
-                    //             shadowColor: '#333'
+                    //             color: '#FF0000',
+                    //             opacity: 1
+                    //         },
+                    //         // 鼠标悬浮的时候圆点样式变化
+                    //         emphasis: {
+                    //             borderColor: '#000000',
+                    //             borderWidth: 1,
+                    //             opacity:1
                     //         }
                     //     },
-                    //     zlevel: 4
+                    //     zlevel:2
                     // },
-                     {
-                    name: '地图',
-                    type: 'map',
-                    map: 'china',
-                     itemStyle: {
-                         normal: { label: { show: true ,opacity:0.5} },
-                         emphasis: { label: { show: true, opacity:0.5} }
-                     },
-                     label: {
-                         formatter: function (params) {
-                             return params.name + ' : ' + params.value[3]
-                         },
-                         position: 'right',
-                         show: false
-                     },
-                     label:{
-                         show: true
-                     },
-                     emphasis: { 
-                         label: { 
-                             show: true 
-                         } 
-                     },
-                         data: this.confirmToday,
-                         zlevel:0
-                     },
+                    // {
+                    //     name: '死亡',
+                    //     // 表的类型 这里是散点
+                    //     type: 'scatter',
+                    //     // 使用地理坐标系，通过 geoIndex 指定相应的地理坐标系组件
+                    //     coordinateSystem: 'geo',
+                    //     // data: [],
+                    //     data: convertData(this.deadToday),
+                    //     symbolSize: function (val) {
+                    //         return 10*Math.log(val[2]+1)/Math.log(2) + 10;
+                    //     },
+                    //     tooltip: {
+                    //         // trigger: 'item',
+                    //         // formatter: function (params) {
+                    //         //     return params.name + ' : ' + params.value[2]
+                    //         // }
+                    //     },
+                    //     label: {
+                    //         formatter: '{b}',
+                    //         position: 'right',
+                    //         show: false
+                    //     },
+                    //     emphasis: {
+                    //         label: {
+                    //             show: true
+                    //         }
+                    //     },
+                    //     itemStyle: {
+                    //         normal: {
+                    //             color: '#00FF00',
+                    //             opacity: 1
+                    //         },
+                    //         // 鼠标悬浮的时候圆点样式变化
+                    //         emphasis: {
+                    //             borderColor: '#FF0000',
+                    //             borderWidth: 1
+                    //         }
+                    //     },
+                    //     zlevel:3
+                    // },
+                    {
+                        name: '省份',
+                        type: 'map',
+                        map: 'china',
+                        //  itemStyle: {
+                        //      normal: { label: { show: true ,opacity:0.5} },
+                        //      emphasis: { label: { 
+                        //          show: true, opacity:1} }
+                        //  },
+                        tooltip: {
+                            trigger: 'item',
+                            formatter(params){
+                                var res = params.name;
+                                return res;
+                            },
+                            zlevel:0
+                        },
+                            
+                        data: this.confirmToday2,
+                        color: 'rgba(255,255,0,0)',
+                        zlevel:0
+                    },
 
                 ]
             };
-                        // 基于准备好的dom，初始化echarts实例
+            // 基于准备好的dom，初始化echarts实例
             this.myChart = this.$echarts.init(document.getElementById('main'));
             this.myChart.setOption(this.option);
 
         },
-        // randomData() {  
-        //     return Math.round(Math.random() * 500);  
-        // },
         run(){
+            console.log(this.date);
             // 根据data获取不同省份对应的地理信息
             const geoCoordMap = this.geoCoordMap;
             var convertData = function (data) {
@@ -610,63 +657,74 @@ export default {
                 for (var i = 0; i < data.length; i++) {
                     var geoCoord = geoCoordMap[data[i].name];
                     if (geoCoord) {
+                        var temp = geoCoord.concat(data[i].confirm);
+                        var temp1 = temp.concat(data[i].recovery);
+                        var temp2 = temp1.concat(data[i].dead);
                         res.push({
                             name: data[i].name,
-                            value: geoCoord.concat(data[i].value)
+                            value: temp2
                         });
                     }
                 }
-                // console.log(res);
                 return res;
             };
 
-            // const state = {
-            //     geoCoordMap: {'香港特别行政区': [114.08, 22.2], '澳门特别行政区': [113.33, 22.13], '台北': [121.5, 25.03]/*等等*/},
-            //     // 发光的城市
-            //     showCityNumber: 5,
-            //     showCount: 0,
-            //     // 是否需要loading
-            //     isLoading: true
-            // }
+            var dataConfirm1 = this.confirmData1;
+            var dataRecovery1 = this.recoveryData1;
+            var dataDead1 = this.deadData1;
 
-            var dataConfirm = this.confirmData;
-            var dataRecovery = this.recoveryData;
-            var dataDead = this.deadData;
+            var dataConfirm2 = this.confirmData2;
+            var dataRecovery2 = this.recoveryData2;
+            var dataDead2 = this.deadData2;
 
-            var todayConfirm = this.confirmToday;
-            var todayRecovery = this.recoveryToday;
-            var todayDead = this.deadToday;
+            var todayConfirm1 = this.confirmToday1;
+            var todayData1 = this.dataToday1;
+
+            var todayConfirm2 = this.confirmToday2;
+            // var todayRecovery = this.recoveryToday;
+            // var todayDead = this.deadToday;
+            var todayData2 = this.dataToday2;
 
 
-            for(var i = 0; i <todayConfirm.length ; i++) {
-                // console.log('runfun');
-                // console.log(i);comfirmData
-                // console.log(this.confirmData);                
-                let dc = this.confirmData[i].value;
-                let dr = this.recoveryData[i].value;
-                let dd = this.deadData[i].value;
+            for(var i = 0; i <todayData2.length ; i++) {
+                
+                let dc1 = this.confirmData1[i].value;
+                let dr1 = this.recoveryData1[i].value;
+                let dd1 = this.deadData1[i].value;
+
+                let dc2 = this.confirmData2[i].value;
+                let dr2 = this.recoveryData2[i].value;
+                let dd2 = this.deadData2[i].value;
 
                 let idx = this.date;
+
+
+                todayConfirm1[i].value = dc1[idx+1] - dc1[idx];
+                // todayRecovery[i].value = dr[idx+1] - dr[idx];
+                // todayDead[i].value = dd[idx+1] - dd[idx];
+                todayData1[i].confirm = dc1[idx+1] - dc1[idx];
+                todayData1[i].recovery = dr1[idx+1] - dr1[idx];
+                todayData1[i].dead = dd1[idx+1] - dd1[idx];
+
+
                 // todayOrigin[i].value = dc[idx] - dr[idx] - dd[idx];
-                todayConfirm[i].value = dc[idx];
-                todayRecovery[i].value = dr[idx];
-                todayDead[i].value = dd[idx];
+                todayConfirm2[i].value = dc2[idx+1] - dc2[idx];
+                // todayRecovery[i].value = dr[idx+1] - dr[idx];
+                // todayDead[i].value = dd[idx+1] - dd[idx];
+                todayData2[i].confirm = dc2[idx+1] - dc2[idx];
+                todayData2[i].recovery = dr2[idx+1] - dr2[idx];
+                todayData2[i].dead = dd2[idx+1] - dd2[idx];
+
             }
 
-            this.option.series[0].data = convertData(todayConfirm);
-            this.option.series[1].data = convertData(todayRecovery);
-            this.option.series[2].data = convertData(todayDead);
-
-            // console.log('&&&&&&');
-            // console.log(this.date);
-            // console.log(todayConfirm);
-            // console.log(this.option.series[0].data);
-            // console.log(this.option.series[0].data);
-            // console.log('$$$$$$');   
+            this.option.series[0].data = convertData(todayData1);
+            this.option.series[1].data = convertData(todayData2);
+            // this.option.series[1].data = convertData(todayRecovery);
+            // this.option.series[2].data = convertData(todayDead);
 
             this.myChart.setOption(this.option);
             this.date = this.date + 1;
-            if(this.date === 24)
+            if(this.date === 50)
             {
                 this.date = 0;
             }
