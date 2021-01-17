@@ -275,7 +275,7 @@ export default {
                     name: '治愈人数',
                     type: 'bar',
                     stack: 'total',
-                    color:"#7FA9F3",
+                    color:"#93d5dc",
                     emphasis: {
                         focus: 'series'
                     },
@@ -508,7 +508,8 @@ export default {
                 return result
         }
         let iii=0
-        const colorlist=['#F1EBE8','#F2E9DF','#F2E8D8','#F4E7D2','#F5E5C3','#F5E4BD','#F6E2B6','#F7E2B0','#F7E0A8','#F8DFA2','#FADF9B','#FADE95','#FADC8E','#FBDB87','#FCDA7F','#FCD979','#FDD771','#FED76B','#FFD562','#FFD254','#FFD154']
+        const colorlist=['#7c1823','#c02c38','#c45a65','#f0a1a8','#fb8b05','#f9a633','#feba07','#f8df72','#c6dfc8','#9eccab','#66c18c','#6e8b74','#1a6840','#5698c3','#a7a8bd','#3b818c','#0f95b0','#63bbd0','#51c4d3','#b0d5df']
+        // const colorlist=['#F1EBE8','#F2E9DF','#F2E8D8','#F4E7D2','#F5E5C3','#F5E4BD','#F6E2B6','#F7E2B0','#F7E0A8','#F8DFA2','#FADF9B','#FADE95','#FADC8E','#FBDB87','#FCDA7F','#FCD979','#FDD771','#FED76B','#FFD562','#FFD254','#FFD154']
         // const colorlist=['#100','#200','#300','#400','#500','#600','#700','#800','#900','#a00','#b00','#c00','#d00','#e00','#f00','#f10','#f20','#f30','#f40','#f50','#f60']
         let link = d3.linkHorizontal()
         this.svg.selectAll('.gLink').data(this.linkdata).join(enter => {
@@ -517,12 +518,12 @@ export default {
                 .attr('fill', 'none')
                 // .attr('stroke', '#999')
                 .attr('stroke', function(){
-                    var color=colorlist[20-iii]
+                    var color=colorlist[iii]
                     iii=iii+1
                     if(iii===20) iii=0
                     return color
                 })
-                .attr('stroke-opacity', 0.8)
+                .attr('stroke-opacity', 0.6)
                 .attr('stroke-width', 6)
         })
         this.chartLeft.setOption(this.optionLeft)
