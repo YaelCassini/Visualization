@@ -1,7 +1,7 @@
 <template>
   <div class="Home">
-    <h1 style=" font-size: 48px; font-weight: bold; color:#0091FF">{{ title }}</h1>
-    <h2>作者：{{ author }}</h2>
+    <h2  style=" font-size: 16px;  color:#D8D8D8; padding: 106px 0px 0px 0px;">{{ subTitle }}</h2>
+    <h1 style="font-size: 48px; font-weight: bold; color:#0091FF; height:120px; padding: 20px 0px 0px 0px;">{{ title }}</h1>
     <ul>
       <li><a href="http://localhost:8080/#/" target="_blank">Home</a></li>
       <li><a href="http://localhost:8080/#/ChinaMap" target="_blank">ChinaMap</a></li>
@@ -16,8 +16,10 @@
         </span>
 
     <div style="margin: 0 auto; display: flex; flex-direction: row; justify-content: space-around;">
-    <div id="main" style="width: 1200px; height: 800px;"></div>
+    <div id="main" style="width: 1200px; height: 600px;"></div>
+
     </div>
+
 
   </div>
 </template>
@@ -32,10 +34,21 @@ export default {
     return {
       msg: '这个界面是上下镜像对称的柱状图，展示每日新增和累计新增，死亡与重要政策发布节点',
       title:'ARE WE DOING BETTER?',
-      author: '李奕扬',
+      subTitle: 'We compared the data of SARS 2003 with the ones of COVID-19 2020 and try to find something...',
       radioButton:true,
       chartOption: 0,
       tabView: 'select1',
+      // markpoints
+      categories: ['政策', '人事', 'categoryC'],
+      types: [
+      {name: 'JS Heap', color: '#7b9ce1'},
+      {name: 'Documents', color: '#bd6d6c'},
+      {name: 'Nodes', color: '#75d874'},
+      {name: 'Listeners', color: '#e0bc78'},
+      {name: 'GPU Memory', color: '#dc77dc'},
+      {name: 'GPU', color: '#72b362'}
+      ],  
+
       // 新冠数据
       // 累计治愈
       data1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 103, 124, 171, 243, 328, 475, 632, 892, 1153, 1540, 2050, 2649, 3281, 3996, 4740, 5642, 6723, 8096, 9419, 10851, 12552, 14376, 16157, 18266, 20659, 22888, 24734, 27323, 29745, 32495, 36117, 39002, 41625, 44462, 47204, 49856, 52045, 53726, 55404, 57065, 58600, 60124, 61617, 62841, 64152, 65578, 66934, 67819, 68724, 69614, 70420, 71740, 71740, 72440, 72703, 73159, 73650, 74051, 74588, 74971, 75448, 75700, 76052, 76238, 76408, 76571, 76755, 76964, 77078, 77167, 77279, 77370, 77455, 77525, 77575, 77663, 77738, 77816, 77892, 77944, 77029, 77062, 77084, 77123, 77151, 77207, 77257, 77346, 77394, 77474, 77555, 77578, 77610, 77642, 77685, 77713, 77766, 77853, 77911, 77957, 77993, 78046, 78120, 78144, 78171, 78189, 78195, 78209, 78219, 78227, 78238, 78241, 78244, 78249, 78255, 78258, 78261, 78268, 78277, 78280, 78288, 78291, 78302, 78304, 78307, 78315, 78314, 78319, 78327, 78329, 78332, 78341, 78351, 78357, 78361, 78365, 78367, 78369, 78370, 78377, 78379, 78394, 78398, 78410, 78413, 78413, 78425, 78428, 78443, 78439, 78444, 78451],
@@ -153,7 +166,7 @@ export default {
               position: 'right',
               inverse: true,
               min: 0,
-              max: 400,
+              max: 300,
               gridIndex: 1,
           },
           ],
@@ -341,7 +354,7 @@ export default {
               position: 'right',
               inverse: true,
               min: 0,
-              max: 9000,
+              max: 6000,
               gridIndex: 1,
           },
           ],
@@ -420,6 +433,9 @@ export default {
         this.chart = this.$echarts.init(document.getElementById('main'))
         console.log(this.radioButton)
         this.chart.setOption(this.optionNew)
+      this.optionMarkPoints = {
+        
+      }
     },
     change:function() {
       console.log("change is called")
