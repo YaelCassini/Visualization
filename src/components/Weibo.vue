@@ -176,12 +176,12 @@ export default {
                                 yAxis: 'max'
                             }]]
                         },
-                        markPoint: {
-                            data: [
-                                {type: 'max', name: '最大值'},
-                                {type: 'min', name: '最小值'}
-                            ]
-                        },
+                        // markPoint: {
+                        //     data: [
+                        //         {type: 'max', name: '最大值'},
+                        //         {type: 'min', name: '最小值'}
+                        //     ]
+                        // },
                         markLine: {
                             symbol:"none", 
                             lineStyle: {
@@ -226,12 +226,12 @@ export default {
                                 yAxis: 'max'
                             }]]
                         },
-                        markPoint: {
-                            data: [
-                                {type: 'max', name: '最大值'},
-                                {type: 'min', name: '最小值'}
-                            ]
-                        },
+                        // markPoint: {
+                        //     data: [
+                        //         {type: 'max', name: '最大值'},
+                        //         {type: 'min', name: '最小值'}
+                        //     ]
+                        // },
                         markLine: {
                             lineStyle: {
                                 type: 'solid'
@@ -265,12 +265,12 @@ export default {
                                 yAxis: 'max'
                             }]]
                         },
-                        markPoint: {
-                            data: [
-                                {type: 'max', name: '最大值'},
-                                {type: 'min', name: '最小值'}
-                            ]
-                        },
+                        // markPoint: {
+                        //     data: [
+                        //         {type: 'max', name: '最大值'},
+                        //         {type: 'min', name: '最小值'}
+                        //     ]
+                        // },
                         markLine: {
                             lineStyle: {
                                 type: 'solid'
