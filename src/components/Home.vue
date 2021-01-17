@@ -511,7 +511,7 @@ export default {
         this.chart.setOption(this.optionNew)
       this.optionMarkPoints = {
                 title: [{
-            text: 'Covid-19 政策',
+            text: 'Covid-19 Policy',
             padding:[0,0,0,60],
             textStyle: {
                 color: '#BCBBB9',
@@ -526,7 +526,7 @@ export default {
 
         },
         {
-          text: 'SARS 政策',
+          text: 'SARS Policy',
           padding:[500,0,0,60],
             textStyle: {
                 color: '#BCBBB9',

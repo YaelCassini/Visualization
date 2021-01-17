@@ -1,6 +1,6 @@
 <template>
   <div class="Weibo">
-      <h1> 每日话题热度分配</h1>
+      <h1 style="font-size: 48px; font-weight: bold; color:#0091FF; height:60px; padding: 60px 0px 40px 0px; margin:0px"> Daily Topic Hotness Distribution</h1>
     <div style="margin:0 50 0 50">
         <div id="main" style="width:85%;height:600px;margin:0 auto;"></div>
     </div>
@@ -46,7 +46,7 @@ export default {
             // 指定图表的配置项和数据
             this.option = {
                 // 这个color改的是图例的颜色（要跟后面series的颜色相同），阿凉麻烦帮忙改下！
-                color:['#ff00ff','#00ff00','#ff0000','#ffff00','#00ffff'],
+                color:['#57B5FB','#57B5FB','#57B5FB','#9AA7EF','#BEA3E1','#DC96B5','#FD8A89','#57B5FB'],
                 tooltip: {
                     trigger: 'axis',
                     formatter(params){
@@ -131,7 +131,7 @@ export default {
 							symbol:"none",               //去掉警戒线最后面的箭头
                             lineStyle:{               //警戒线的样式  ，虚实  颜色
                                     type:"solid",
-									color:"#FA3934", //阿凉改下警戒线颜色，蟹蟹！
+									color:"#F1EBE9", //阿凉改下警戒线颜色，蟹蟹！
                             },
                             silent:false, //鼠标悬停事件  true没有，false有
                             data:[
@@ -209,8 +209,8 @@ export default {
                         },
                         showSymbol: false,
                         areaStyle: {
-                            opacity: 0.3,
-                            color: 'rgba(255,0,255)' //阿凉帮忙改下颜色，蟹蟹！
+                            opacity: 0.8,
+                            color: '#57B5FB' //阿凉帮忙改下颜色，蟹蟹！
                         },
                         emphasis: {
                             focus: 'series'
@@ -229,8 +229,8 @@ export default {
                         },
                         showSymbol: false,
                         areaStyle: {
-                            opacity: 0.3,
-                            color: 'rgba(0,255,0)' //阿凉帮忙改下颜色，蟹蟹！
+                            opacity: 0.8,
+                            color: '#9AA7EF' //阿凉帮忙改下颜色，蟹蟹！
                         },
                         emphasis: {
                             focus: 'series'
@@ -248,8 +248,8 @@ export default {
                         },
                         showSymbol: false,
                         areaStyle: {
-                            opacity: 0.3,
-                            color: 'red' //阿凉帮忙改下颜色，蟹蟹！
+                            opacity: 0.8,
+                            color: '#BEA3E1' //阿凉帮忙改下颜色，蟹蟹！
                         },
                         emphasis: {
                             focus: 'series'
@@ -267,8 +267,8 @@ export default {
                         },
                         showSymbol: false,
                         areaStyle: {
-                            opacity: 0.3,
-                            color: 'rgba(255,255,0)'  //阿凉帮忙改下颜色，蟹蟹！
+                            opacity: 0.8,
+                            color: '#DC96B5'  //阿凉帮忙改下颜色，蟹蟹！
                         },
                         emphasis: {
                             focus: 'series'
@@ -285,8 +285,8 @@ export default {
                         },
                         showSymbol: false,
                         areaStyle: {
-                            opacity: 0.3,
-                            color: 'rgba(0,255,255)' //阿凉帮忙改下颜色，蟹蟹！
+                            opacity: 0.8,
+                            color: '#FD8A89' //阿凉帮忙改下颜色，蟹蟹！
                         },
                         emphasis: {
                             focus: 'series'

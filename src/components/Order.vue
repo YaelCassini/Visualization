@@ -1,6 +1,6 @@
 <template>
   <div class="ChinaMap">
-    <h1>{{ msg }}</h1>
+    <h1 style="font-size: 48px; font-weight: bold; color:#0091FF; height:60px; padding: 60px 0px 40px 0px; margin:0px">{{ msg }}</h1>
     <!-- <h2>作者：{{ author }}</h2>  -->
     <div style="margin:0 50 0 50; display: flex; flex-direction: row; justify-content: space-around;">
         <div id="main-left" style="width: 600px; height: 600px;"></div>
@@ -22,7 +22,7 @@ export default {
   name: 'order',
   data () {
     return {
-      msg: '各省每日增长排名',
+      msg: 'Regional Growth Ranking',
       covconfirmData:covconfirm,
       covrecoveryData:covrecovery,
       covdeadData:covdead,
@@ -53,7 +53,7 @@ export default {
       draw () {
         this.optionLeft = {
         title: {
-            text: '非典数据',
+            text: 'SARS Data',
             textStyle: {
                 color: '#44D7B6',
                 fontWeight: 'bolder',
@@ -148,7 +148,7 @@ export default {
         }
         this.optionRight = {
             title: {
-                text: '新冠数据',
+                text: 'Covid Data',
                 textStyle: {
                 color: '#0091FF',
                 fontWeight: 'bolder',
@@ -211,7 +211,7 @@ export default {
                     name: '治愈人数',
                     type: 'bar',
                     stack: 'total',
-                    color:"#93d5dc",
+                    color:"#BEA3E1",
                     emphasis: {
                         focus: 'series'
                     },
@@ -226,7 +226,7 @@ export default {
                     name: '死亡人数',
                     type: 'bar',
                     stack: 'total',
-                    color:'#B6A7EB',
+                    color:'#DC96B5',
                     emphasis: {
                         focus: 'series'
                     },

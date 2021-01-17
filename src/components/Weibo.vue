@@ -1,6 +1,6 @@
 <template>
   <div class="Weibo">
-    <h1> 微博话题情感分析</h1>
+    <h1 style="font-size: 48px; font-weight: bold; color:#0091FF; height:60px; padding: 60px 0px 40px 0px; margin:0px"> Weibo Text Sentiment Analysis </h1>
     <div style="margin:0 20 0 20">
         <div id="main" style="width:85%;height:600px;margin:0 auto;"></div>
     </div>

@@ -1,7 +1,14 @@
 <template>
   <div class="ChinaMap">
+<h1 style="font-size: 48px; font-weight: bold; color:#0091FF; height:60px; padding: 60px 0px 0px 0px; margin:0px">  
+    Geographical Information
+</h1>
+<h2 style="font-size: 26px; font-weight: bold; color:#F1EBE9;margin:0">
+Covid-19 x SARS
+</h2>
+
     <div style="margin:0 50 0 50">
-        <div id="main" style="width:100%;height:680px;margin:0 auto;"></div>
+        <div id="main" style="width:100%;height:680px;margin:0 auto; padding:0px 0px 0px 0px"></div>
     </div>
   </div>
 </template>
@@ -377,8 +384,8 @@ export default {
                     itemStyle: {
                         // 地图背景色
                         normal: {
-                            areaColor: '#FF0000',
-                            borderColor: '#FFD562',
+                            areaColor: '#D4D2CF',
+                            borderColor: '#D9D3CD',
                             opacity:0,
                         },
                         // 悬浮时
@@ -391,14 +398,15 @@ export default {
                 backgroundColor: '#FCFAF7',
                 title: {
                     padding:30,
-                    text: '疫情地理信息',
-                    subtext: '中国地图',
+                    //text: 'Covid-19 x SARS \n GEOGRAPHICAL INFOMATION',
+                    subtext: 'in China',
                     left: 'center',
                     textStyle: {
                         color: '#0091FF',
                         fontSize:48,
                         fontWeight:'bolder',
-                    }
+                    },
+                    padding:[0,0,40,0]
                 },
                 
                 tooltip: {
@@ -424,6 +432,10 @@ export default {
                     },
                     zlevel:0
                 },
+                grid:{
+                    top:200,
+                    height:400,
+                },
                 legend: {
                     orient: 'vertical',
                     left: 'left',
@@ -446,7 +458,7 @@ export default {
                     inRange: {
                         // 改颜色
                         // 地图颜色深度
-                        color: ['#FFFF00', '#026FDD']
+                        color: ['#F1EBE9', '#FFD562', '#FD8986']
                     },
                     // 透明度
                     opacity:0.3,
@@ -481,14 +493,17 @@ export default {
                             normal: {
                                 // 改颜色
                                 // 新冠散点颜色及透明度
-                                color: '#FFFFFF',
-                                opacity: 1
+                                color: '#FD8A87',
+                                opacity: 0.4,
+                                shadowColor: 'rgba(181, 166, 235, 0.5)',
+                                shadowBlur: 10
                             },
                             // 鼠标悬浮的时候圆点样式变化
                             emphasis: {
                                 // 改颜色
                                 // 新冠散点外边界颜色及透明度
-                                borderColor: '#000000',
+                                borderColor: '#FD8A87',
+                                opacity: 1,
                                 borderWidth: 1
                             }
                         },
@@ -522,14 +537,17 @@ export default {
                             normal: {
                                 // 改颜色
                                 // 非典散点颜色及透明度
-                                color: '#000000',
-                                opacity: 1
+                                color: '#FFD154',
+                                shadowColor: 'rgba(255, 209, 84, 0.5)',
+                                shadowBlur: 10,
+                                opacity: 0.4
                             },
                             // 鼠标悬浮的时候圆点样式变化
                             emphasis: {
                                 // 改颜色
                                 // 非典散点边界颜色及透明度
-                                borderColor: '#FFFFFF',
+                                borderColor: '#FFD154',
+                                opacity: 1,
                                 borderWidth: 1
                             }
                         },
@@ -637,7 +655,7 @@ export default {
                         },
                             
                         data: this.confirmToday2,
-                        color: 'rgba(255,255,0,0)',
+                        color: 'rgba(238,225,221,0.4)',
                         zlevel:0
                     },
 
