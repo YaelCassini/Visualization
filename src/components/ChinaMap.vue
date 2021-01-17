@@ -14,7 +14,7 @@ import * as d3 from 'd3'
 // import * as echarts from 'echarts';
 
 import echarts from 'echarts/lib/echarts';
-import 'echarts/map/js/china.js';
+import '../../echarts/china.js';
 // 散点图
 import 'echarts/lib/chart/scatter';
 import 'echarts/lib/chart/effectScatter';
@@ -27,9 +27,9 @@ import 'echarts/lib/component/tooltip';
 // 地图geo
 import 'echarts/lib/component/geo';
 
-import confirmdatajson from './confirmData.json'
-import recoverydatajson from './recoveryData.json'
-import deaddatajson from './deadData.json'
+import confirmdatajson from '../data/confirmData.json'
+import recoverydatajson from '../data/recoveryData.json'
+import deaddatajson from '../data/deadData.json'
 
 
 export default {
@@ -269,6 +269,7 @@ export default {
         },
 
         drawMap() {
+            console.log(echarts.version);
             // 根据data获取不同省份对应的地理信息
             const geoCoordMap = this.geoCoordMap;
             var convertData = function (data) {
