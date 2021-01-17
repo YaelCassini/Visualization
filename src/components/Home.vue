@@ -2,16 +2,28 @@
   <div class="Home">
     <h2  style=" font-size: 16px;  color:#D8D8D8; padding: 106px 0px 0px 0px;">{{ subTitle }}</h2>
     <h1 style="font-size: 48px; font-weight: bold; color:#0091FF; height:120px; padding: 20px 0px 0px 0px;">{{ title }}</h1>
+        <div style="width: 1200px; height: 600px;">
+          <div style="padding: 0px 0px 20px 0px">
+            <div style="font-size: 16px; font-weight: bold; color:#0091FF;">
+              First Confirmed Case:
+            </div>
+            <h3 style="font-size: 48px; font-weight: bold; color:#0091FF; ">2019/12/27</h3>
+          </div>
+          <div>
+            <div style="font-size: 16px; font-weight: bold; color:#44D7B6;">
+               First Confirmed Cases:
+            </div>
+            <h3 style="font-size: 48px; font-weight: bold; color:#44D7B6;">2002/12/25</h3>
+            </div>
+    </div>
         <span id="button1" style="height: 50px;width: 200px;margin-left: 650px">
         <el-radio-group v-model="radioButton" @change="change" size="medium" >
             <el-radio-button :label="true" >NEW</el-radio-button>
             <el-radio-button :label="false">TOTAL</el-radio-button>
         </el-radio-group>
         </span>
-
     <div style="margin: 0 auto; display: flex; flex-direction: row; justify-content: space-around;">
-    <div id="main" style="width: 1200px; height: 600px;"></div>
-
+    <div id="main" style="width: 1200px; height: 400px;"></div>
     </div>
 
 
