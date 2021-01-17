@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" style="background-color:#FCFAF7">
     <mynavbar></mynavbar>
     <router-view></router-view>
   </div>
@@ -25,7 +25,5 @@ export default {
   color: #FCFAF7;
   margin-top: 0px;
 }
-.app {
-  background: url('virus.png');
-}
+
 </style>
