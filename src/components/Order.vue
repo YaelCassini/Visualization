@@ -118,7 +118,16 @@ export default {
         this.optionLeft = {
         title: {
             text: '非典数据',
-            subtext: '数据来自卫健委'
+            textStyle: {
+                color: '#44D7B6',
+                fontWeight: 'bolder',
+                fontSize:20,
+            },
+            subtext: '数据来自卫健委',
+            subtextStyle: {
+                color: '#BCBBB9',
+                fontSize:10,
+            },
         },
         tooltip: {
             trigger: 'axis',
@@ -158,6 +167,7 @@ export default {
                     name: '治疗人数',
                     type: 'bar',
                     stack: 'total',
+                    color:"#72DFC6",
                     emphasis: {
                         focus: 'series'
                     },
@@ -172,6 +182,7 @@ export default {
                     name: '治愈人数',
                     type: 'bar',
                     stack: 'total',
+                    color:"#BDE1AB",
                     emphasis: {
                         focus: 'series'
                     },
@@ -186,6 +197,7 @@ export default {
                     name: '死亡人数',
                     type: 'bar',
                     stack: 'total',
+                    color:"#FFE394",
                     emphasis: {
                         focus: 'series'
                     },
@@ -201,7 +213,16 @@ export default {
         this.optionRight = {
             title: {
                 text: '新冠数据',
-                subtext: '数据来自卫健委'
+                textStyle: {
+                color: '#0091FF',
+                fontWeight: 'bolder',
+                fontSize:20,
+            },
+                subtext: '数据来自卫健委',
+                subtextStyle: {
+                color: '#BCBBB9',
+                fontSize:10,
+            },
             },
             tooltip: {
                 trigger: 'axis',
@@ -239,6 +260,7 @@ export default {
                     name: '治疗人数',
                     type: 'bar',
                     stack: 'total',
+                    color:'#3FABFC',
                     emphasis: {
                         focus: 'series'
                     },
@@ -253,6 +275,7 @@ export default {
                     name: '治愈人数',
                     type: 'bar',
                     stack: 'total',
+                    color:"#7FA9F3",
                     emphasis: {
                         focus: 'series'
                     },
@@ -267,6 +290,7 @@ export default {
                     name: '死亡人数',
                     type: 'bar',
                     stack: 'total',
+                    color:'#B6A7EB',
                     emphasis: {
                         focus: 'series'
                     },
@@ -307,7 +331,7 @@ export default {
                     return (i * 25) + 70
                 })
                 .attr('r', 5)
-                .attr('fill', '#999')
+                .attr('fill', '#F1EBE8')
         var rightenter = this.grightnode.selectAll('g')
                 .data(dataset)        
                 .enter()
@@ -317,7 +341,7 @@ export default {
                     return (i * 25) + 70
                 })
                 .attr('r', 5)
-                .attr('fill', '#999')
+                .attr('fill', '#F1EBE8')
         // 绘制连线
         function handle (data) {
             let result = {
@@ -484,7 +508,8 @@ export default {
                 return result
         }
         let iii=0
-        const colorlist=['#100','#200','#300','#400','#500','#600','#700','#800','#900','#a00','#b00','#c00','#d00','#e00','#f00','#f10','#f20','#f30','#f40','#f50','#f60']
+        const colorlist=['#F1EBE8','#F2E9DF','#F2E8D8','#F4E7D2','#F5E5C3','#F5E4BD','#F6E2B6','#F7E2B0','#F7E0A8','#F8DFA2','#FADF9B','#FADE95','#FADC8E','#FBDB87','#FCDA7F','#FCD979','#FDD771','#FED76B','#FFD562','#FFD254','#FFD154']
+        // const colorlist=['#100','#200','#300','#400','#500','#600','#700','#800','#900','#a00','#b00','#c00','#d00','#e00','#f00','#f10','#f20','#f30','#f40','#f50','#f60']
         let link = d3.linkHorizontal()
         this.svg.selectAll('.gLink').data(this.linkdata).join(enter => {
             enter.append('path')
