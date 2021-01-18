@@ -2,7 +2,7 @@
   <div class="Weibo">
     <h1 style="font-size: 48px; font-weight: bold; color:#0091FF; height:60px; padding: 60px 0px 40px 0px; margin:0px"> Weibo Text Sentiment Analysis </h1>
     <div style="margin:0 20 0 20">
-        <div id="main" style="width:85%;height:600px;margin:0 auto;"></div>
+        <div id="main" style="width:85%;height:580px;margin:0 auto;"></div>
     </div>
   </div>
 </template>
@@ -168,7 +168,7 @@ export default {
                                 borderType: 'dashed'
                             },
                             data: [[{
-                                name: '疫情讨论',
+                                name: '',
                                 xAxis: 'min',
                                 yAxis: 'min'
                             }, {
@@ -218,7 +218,7 @@ export default {
                                 borderType: 'dashed'
                             },
                             data: [[{
-                                name: '疫情讨论',
+                                name: '',
                                 xAxis: 'min',
                                 yAxis: 'min'
                             }, {
@@ -257,7 +257,7 @@ export default {
                                 borderType: 'dashed'
                             },
                             data: [[{
-                                name: '疫情讨论',
+                                name: '',
                                 xAxis: 'min',
                                 yAxis: 'min'
                             }, {

@@ -3,12 +3,12 @@
 <h1 style="font-size: 48px; font-weight: bold; color:#0091FF; height:60px; padding: 60px 0px 0px 0px; margin:0px">  
     Geographical Information
 </h1>
-<h2 style="font-size: 26px; font-weight: bold; color:#F1EBE9;margin:0">
-Covid-19 x SARS
+<h2 style="font-size: 26px; font-weight: bold; color:rgb(97,113,114);margin:0">
+Covid-19(from 2020-01-20) x SARS(from 2003-04-20)
 </h2>
 
     <div style="margin:0 50 0 50">
-        <div id="main" style="width:100%;height:680px;margin:0 auto; padding:0px 0px 0px 0px"></div>
+        <div id="main" style="width:100%;height:580px;margin:0 auto; padding:0px 0px 0px 0px"></div>
     </div>
   </div>
 </template>
@@ -537,7 +537,8 @@ export default {
                             normal: {
                                 // 改颜色
                                 // 非典散点颜色及透明度
-                                color: '#FFD154',
+                                // color: '#FFD154',
+                                color: '#57B5FB',
                                 shadowColor: 'rgba(255, 209, 84, 0.5)',
                                 shadowBlur: 10,
                                 opacity: 0.4
@@ -654,7 +655,7 @@ export default {
                             zlevel:0
                         },
                             
-                        data: this.confirmToday2,
+                        data: this.confirmToday1,
                         color: 'rgba(238,225,221,0.4)',
                         zlevel:0
                     },

@@ -3,9 +3,9 @@
     <h1 style="font-size: 48px; font-weight: bold; color:#0091FF; height:60px; padding: 60px 0px 40px 0px; margin:0px">{{ msg }}</h1>
     <!-- <h2>作者：{{ author }}</h2>  -->
     <div style="margin:0 50 0 50; display: flex; flex-direction: row; justify-content: space-around;">
-        <div id="main-left" style="width: 600px; height: 600px;"></div>
-        <div id="center-link" style="width:200px; height:600px;"></div>
-        <div id="main-right" style="width: 600px; height: 600px;"></div>
+        <div id="main-left" style="width: 600px; height: 580px;"></div>
+        <div id="center-link" style="width:200px; height:580px;"></div>
+        <div id="main-right" style="width: 600px; height: 580px;"></div>
     </div>
   </div>
 </template>
